@@ -22,5 +22,8 @@ class LoginPage (BasePage):
         assert self.is_element_present(*LPL.LOGIN_ID), "Login is not presented"
         assert self.is_element_present(*LPL.PSWRD), "Password is not presented"
 
+    def should_be_error_text(self):
+        assert self.is_element_present(*LPL.INVALID_LOGIN_TX), "Failed login with negative data"
+
 
 

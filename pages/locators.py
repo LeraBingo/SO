@@ -8,6 +8,7 @@ class LoginPageLocators():
     PSWRD = (By.CSS_SELECTOR, "input#ID_PASSWORD")
     REMEMBER_ME = (By.CSS_SELECTOR, "#ID_REMEMBERME")
     LOGIN_BTN = (By.CSS_SELECTOR, "#ID_LOGIN")
+    INVALID_LOGIN_TX = (By.CSS_SELECTOR, "#ID_LOGIN_ERROR > div > label > span")
 
 
 class MainPageLocators:
