@@ -2,6 +2,7 @@ import pytest
 from pages.login_page import LoginPage
 
 
+
 class TestLogin:
 
     def test_valid_login(self, browser):
@@ -41,6 +42,8 @@ class TestLogin:
         page = LoginPage(browser, link)
         page.open()
         page.login('SOA424824', 'letmein', inv_pass)
+
+
 
 
 
