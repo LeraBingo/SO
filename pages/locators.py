@@ -19,3 +19,6 @@ class MainPageLocators:
     SALES = (By.CSS_SELECTOR, '#Sales > h2 > a')
     SO = (By.XPATH, "//li[@id='0.AllSalesOrders']/a/span")
     LIST_ALL = (By.CSS_SELECTOR, '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
+    SEARCH_BY_REF = (By.CSS_SELECTOR, "#byRefNum")
+    SEARCH_TRNXS = (By.CSS_SELECTOR, "#searchByReference")
+    MAGNIFYING_GLASS_VIEW_SO = (By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")

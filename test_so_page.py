@@ -13,8 +13,9 @@ class TestSO:
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
-        page.login('SOA424824', 'UserPes777', 'UserPes')
-        so = SO(browser, link, timeout=100)
+        page.login('SOA424824', 'letmein', 'letmein')
+        so = SO(browser, link)
         so.go_to_all_so()
+        so.search_so_by_ref_and_view()
 
 
