@@ -16,5 +16,6 @@ class MainPageLocators:
     EXPLORITARY_MENU = (By.CSS_SELECTOR, "#tree")
     WORK_SPACE = (By.CSS_SELECTOR, "#work")
     COLLAPSE_BTN = (By.CSS_SELECTOR, "#tabPanel > nav > div.tree-controls.group > a.collapse.group")
-    SALES = (By.XPATH, '//*[@id="Sales"]/h2/a')
-    SO = (By.CSS_SELECTOR, "#\30\.AllSalesOrders span")
+    SALES = (By.CSS_SELECTOR, '#Sales > h2 > a')
+    SO = (By.XPATH, "//li[@id='0.AllSalesOrders']/a/span")
+    LIST_ALL = (By.CSS_SELECTOR, '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')

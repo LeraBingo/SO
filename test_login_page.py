@@ -11,7 +11,7 @@ class TestLogin:
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
-        page.login('SOA424824', 'letmein', 'letmein')
+        page.login('SOA424824', 'UserPes777', 'UserPes')
 
 
     invalid_acc = [r'  SOA424824', r'SOA424824   ', 'SOA4248 2 4']
