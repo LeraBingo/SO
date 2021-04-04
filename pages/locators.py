@@ -22,3 +22,6 @@ class MainPageLocators:
     SEARCH_BY_REF = (By.CSS_SELECTOR, "#byRefNum")
     SEARCH_TRNXS = (By.CSS_SELECTOR, "#searchByReference")
     MAGNIFYING_GLASS_VIEW_SO = (By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
+    ADD_TRNX = (By.XPATH, '//ul[2]/li[1]/button')
+    CREATE_NEW = (By.XPATH, "(//a[contains(text(),'Create New')])")
+    SAVE = (By.CSS_SELECTOR, "#construct")

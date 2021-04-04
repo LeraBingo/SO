@@ -26,4 +26,13 @@ class SalesOrder(BasePage):
         self.browser.find_element(*MPL.MAGNIFYING_GLASS_VIEW_SO).click()
 
 
+    def create_so(self):
+        self.browser.find_element(*MPL.ADD_TRNX).click()
+        self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys('C10008')
+        self.browser.find_element(*MPL.SEARCH_TRNXS).click()
+        self.browser.find_element(*MPL.CREATE_NEW).click()
+        self.browser.find_element(*MPL.SAVE).click()
+
+
+
 

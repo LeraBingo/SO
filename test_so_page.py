@@ -26,4 +26,13 @@ class TestSO:
         so.go_to_all_so()
         so.search_so_by_ref_and_view()
 
+    def test_create_so(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        so = SO(browser, link)
+        so.go_to_all_so()
+        so.create_so()
+
 
