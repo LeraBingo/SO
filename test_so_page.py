@@ -35,7 +35,7 @@ class TestSO:
         so.go_to_all_so()
         so.create_so()
 
-    def test_edit_so(self, browser):
+     def test_edit_so(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
@@ -54,6 +54,4 @@ class TestSO:
         so.go_to_all_so()
         so.search_so_by_ref_and_view()
         so.remember_order_values()
-
-
 

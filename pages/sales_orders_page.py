@@ -2,7 +2,6 @@
 from .base_page import BasePage
 from .locators import MainPageLocators as MPL
 from selenium.webdriver.support.ui import Select
-import sys
 
 class SalesOrder(BasePage):
 
@@ -47,8 +46,7 @@ class SalesOrder(BasePage):
     def apply_pl(self):
         Select(self.browser.find_element(*MPL.APL_DROPDOWN)).select_by_visible_text('cats')
 
-
-    def edit_so(self):
+     def edit_so(self):
         self.browser.find_element(*MPL.EDIT_TRNX).click()
         #here we do some stuff
         self.browser.find_element(*MPL.SAVE_AFTER_EDIT).click()
@@ -65,10 +63,6 @@ class SalesOrder(BasePage):
         order_general_values_after_edit['tax'] = self.browser.find_element(*MPL.TAX_VALUE).text
         order_general_values_after_edit['plevel'] = self.browser.find_element(*MPL.PLEVEL_VALUE).text
         assert order_general_values_before_edit == order_general_values_after_edit, f'Actual data = {order_general_values_after_edit}, expected - {order_general_values_before_edit} '
-
-
-
-
 
 
 

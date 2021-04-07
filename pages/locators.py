@@ -36,3 +36,4 @@ class MainPageLocators:
     PL_VALUE = (By.XPATH, '//*[@id="priceList"]/p')
     TAX_VALUE = (By.XPATH, '//*[@id="taxCode"]/p')
     PLEVEL_VALUE = (By.XPATH, '//*[@id="priceLevel"]/p')
+
