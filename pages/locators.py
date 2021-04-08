@@ -12,7 +12,6 @@ class LoginPageLocators:
     URL = 'http://18.213.119.207/salesorder/pages/login.aspx'
 
 
-
 class MainPageLocators:
 
     ADD_ITEM_IN_ITEM_SELECTOR = (By.XPATH, "//tr[1]/td/img[@alt='add']")
@@ -30,9 +29,11 @@ class MainPageLocators:
 
     HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
 
-    LIST_ALL = (By.CSS_SELECTOR, '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
+    LIST_ALL = (By.CSS_SELECTOR,
+                '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
 
-    MAGNIFYING_GLASS_VIEW_SO = (By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
+    MAGNIFYING_GLASS_VIEW_SO = (
+    By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
 
     PLEVEL_VALUE = (By.XPATH, '//*[@id="priceLevel"]/p')
     PL_VALUE = (By.XPATH, '//*[@id="priceList"]/p')
@@ -50,10 +51,3 @@ class MainPageLocators:
     TAX_VALUE = (By.XPATH, '//*[@id="taxCode"]/p')
 
     WORK_SPACE = (By.CSS_SELECTOR, "#work")
-
-
-
-
-
-
-
