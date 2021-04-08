@@ -28,6 +28,7 @@ class MainPageLocators:
     HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
     FIND_ITEM = (By.CSS_SELECTOR, "#ptr_itemPtr_li\.0 > a.dbc-find-ITEMS.list.find-btn")
     SEARCH_ITEM_IN_ITEM_SELECTOR = (By.CSS_SELECTOR, "#itemSelectorSearchField")
+    SEARCH_BTN_IN_ITEM_SELECTOR = (By.CSS_SELECTOR, "section#ItemsView input.search-button")
     ADD_ITEM_IN_ITEM_SELECTOR = (By.XPATH, "//tr[1]/td/img[@alt='add']")
     APPLY_IN_ITEM_SEARCH = (By.CSS_SELECTOR, "#apply")
     APL_DROPDOWN = (By.CSS_SELECTOR, "#priceList")
