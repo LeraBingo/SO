@@ -98,7 +98,7 @@ class SalesOrder(BasePage):
         self.browser.switch_to.frame(frame)
         self.browser.find_element(*MPL.LIST_ALL).click()
 
-
+    # saves item values to dictionary and compares them with the values after edit->save. The number of items can be specified in num_of_items
 
     def remember_order_item_values(self, num_of_items):
         items_values_before_edit = []
@@ -170,8 +170,8 @@ class SalesOrder(BasePage):
 
     # searches a so by ref# (indicated in send_keys for now) and opens in
 
-    def search_so_by_ref_and_view(self):
-        self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys('SO10951')
+    def search_so_by_ref_and_view(self, order_ref):
+        self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys(order_ref)
         self.browser.find_element(*MPL.SEARCH_TRNXS).click()
         assert self.is_element_present(*MPL.MAGNIFYING_GLASS_VIEW_SO), "No orders with the ref#"
         self.browser.find_element(*MPL.MAGNIFYING_GLASS_VIEW_SO).click()
