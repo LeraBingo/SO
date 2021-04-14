@@ -63,7 +63,8 @@ class TestSO:
         so.search_so_by_ref_and_view()
         so.edit_so()
 
-    def test_compare_values_before_and_after_edit(self, browser):
+
+    def test_compare_item_values_before_and_after_edit(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
@@ -72,4 +73,14 @@ class TestSO:
         so.go_to_all_so()
         so.search_so_by_ref_and_view()
         so.remember_order_values()
+
+    def test_compare_order_values_before_and_after_edit(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        so = SO(browser, link)
+        so.go_to_all_so()
+        so.search_so_by_ref_and_view()
+        so.remember_order_item_values(3)
 

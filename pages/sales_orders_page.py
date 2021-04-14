@@ -98,6 +98,62 @@ class SalesOrder(BasePage):
         self.browser.switch_to.frame(frame)
         self.browser.find_element(*MPL.LIST_ALL).click()
 
+
+
+    def remember_order_item_values(self, num_of_items):
+        items_values_before_edit = []
+        items_values_after_edit = []
+
+        for item in range(num_of_items):
+
+            item_values_before_edit = {'code': '', 'descr': '', 'site': '', 'qty_invcd': '0', 'allocated': '0', 'in_shipping': '0', 'shipped': '0', 'up': '0', 'qty': '0', 'discount': '0', 'total_discount': '0', 'amount': '0', 'tax': '', 'tax_rate': '0', 'total': '0'}
+
+            item_values_before_edit['code']=self.browser.find_element(By.XPATH, f"//*[@id='li_table']/tbody/tr[{item+1}]/td[4]/a").text
+            item_values_before_edit['descr'] = self.browser.find_element(By.XPATH, f"//*[@id='li_table']/tbody/tr[{item+1}]/td[6]/p").text
+            item_values_before_edit['site'] = self.browser.find_element(By.XPATH, f"//*[@id='warehouse_li.{item}']").get_attribute('value')
+            item_values_before_edit['qty_invcd'] = self.browser.find_element(By.XPATH,  f'//*[@id="shipped_li.{item}"]').get_attribute('value')
+            item_values_before_edit['allocated'] = self.browser.find_element(By.XPATH,  f'//*[@id="allocated_li.{item}"]').get_attribute('value')
+            item_values_before_edit['in_shipping'] = self.browser.find_element(By.XPATH, f'//*[@id="inShipping_li.{item}"]').get_attribute('value')
+            item_values_before_edit['shipped'] = self.browser.find_element(By.XPATH, f'//*[@id="dispatched_li.{item}"]').get_attribute('value')
+            item_values_before_edit['up'] = self.browser.find_element(By.XPATH, f'//*[@id="unitPrice_li.{item}"]').get_attribute('value')
+            item_values_before_edit['qty'] = self.browser.find_element(By.XPATH, f'//*[@id="quantity_li.{item}"]').get_attribute('value')
+            item_values_before_edit['discount'] = self.browser.find_element(By.XPATH,  f'//*[@id="discount_li.{item}"]').get_attribute('value')
+            item_values_before_edit['total_discount'] = self.browser.find_element(By.XPATH,  f'//*[@id="totalDiscount_li.{item}"]').get_attribute('value')
+            item_values_before_edit['amount'] = self.browser.find_element(By.XPATH,  f'//*[@id="preTaxAmount_li.{item}"]').get_attribute('value')
+            item_values_before_edit['tax'] = self.browser.find_element(By.XPATH,  f'//*[@id="taxCode_li.{item}"]').get_attribute('value')
+            item_values_before_edit['tax_rate'] = self.browser.find_element(By.XPATH,  f'//*[@id="taxRate_li.{item}"]').get_attribute('value')
+            item_values_before_edit['total'] = self.browser.find_element(By.XPATH,  f'//*[@id="price_li.{item}"]').get_attribute('value')
+            items_values_before_edit.append(item_values_before_edit)
+
+        self.edit_so()
+
+        for item in range(num_of_items):
+
+            item_values_after_edit = {'code': '', 'descr': '', 'site': '', 'qty_invcd': '0', 'allocated': '0', 'in_shipping': '0', 'shipped': '0', 'up': '0', 'qty': '0', 'discount': '0', 'total_discount': '0', 'amount': '0', 'tax': '', 'tax_rate': '0', 'total': '0'}
+
+            item_values_after_edit['code'] = self.browser.find_element(By.XPATH, f"//*[@id='li_table']/tbody/tr[{item + 1}]/td[4]/a").text
+            item_values_after_edit['descr'] = self.browser.find_element(By.XPATH, f"//*[@id='li_table']/tbody/tr[{item + 1}]/td[6]/p").text
+            item_values_after_edit['site'] = self.browser.find_element(By.XPATH, f"//*[@id='warehouse_li.{item}']").get_attribute('value')
+            item_values_after_edit['qty_invcd'] = self.browser.find_element(By.XPATH, f'//*[@id="shipped_li.{item}"]').get_attribute('value')
+            item_values_after_edit['allocated'] = self.browser.find_element(By.XPATH, f'//*[@id="allocated_li.{item}"]').get_attribute('value')
+            item_values_after_edit['in_shipping'] = self.browser.find_element(By.XPATH, f'//*[@id="inShipping_li.{item}"]').get_attribute('value')
+            item_values_after_edit['shipped'] = self.browser.find_element(By.XPATH, f'//*[@id="dispatched_li.{item}"]').get_attribute('value')
+            item_values_after_edit['up'] = self.browser.find_element(By.XPATH,  f'//*[@id="unitPrice_li.{item}"]').get_attribute('value')
+            item_values_after_edit['qty'] = self.browser.find_element(By.XPATH, f'//*[@id="quantity_li.{item}"]').get_attribute('value')
+            item_values_after_edit['discount'] = self.browser.find_element(By.XPATH,  f'//*[@id="discount_li.{item}"]').get_attribute('value')
+            item_values_after_edit['total_discount'] = self.browser.find_element(By.XPATH, f'//*[@id="totalDiscount_li.{item}"]').get_attribute('value')
+            item_values_after_edit['amount'] = self.browser.find_element(By.XPATH,  f'//*[@id="preTaxAmount_li.{item}"]').get_attribute('value')
+            item_values_after_edit['tax'] = self.browser.find_element(By.XPATH,  f'//*[@id="taxCode_li.{item}"]').get_attribute('value')
+            item_values_after_edit['tax_rate'] = self.browser.find_element(By.XPATH, f'//*[@id="taxRate_li.{item}"]').get_attribute('value')
+            item_values_after_edit['total'] = self.browser.find_element(By.XPATH, f'//*[@id="price_li.{item}"]').get_attribute('value')
+            items_values_after_edit.append(item_values_after_edit)
+
+        assert items_values_before_edit == items_values_after_edit, f'before = {items_values_before_edit} and after = {items_values_after_edit}'
+
+
+
+
+
     # saves PL, tax and price level before changing and compares them with values after edit->save
 
     def remember_order_values(self):
@@ -115,7 +171,7 @@ class SalesOrder(BasePage):
     # searches a so by ref# (indicated in send_keys for now) and opens in
 
     def search_so_by_ref_and_view(self):
-        self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys('SO10897')
+        self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys('SO10951')
         self.browser.find_element(*MPL.SEARCH_TRNXS).click()
         assert self.is_element_present(*MPL.MAGNIFYING_GLASS_VIEW_SO), "No orders with the ref#"
         self.browser.find_element(*MPL.MAGNIFYING_GLASS_VIEW_SO).click()
