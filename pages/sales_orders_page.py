@@ -44,7 +44,7 @@ class SalesOrder(BasePage):
     # creates a SO with 1 item and a PL applied, checks order has been created
 
     def create_so(self, item, pl):
-        self.browser.find_element(*MPL.ADD_TRNX).click()
+        self.browser.find_element(*MPL.ADD_TRNX_OR_ITEM).click()
         self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys('C10008')
         self.browser.find_element(*MPL.SEARCH_TRNXS).click()
         self.browser.find_element(*MPL.CREATE_NEW).click()
@@ -57,7 +57,7 @@ class SalesOrder(BasePage):
     # creates a so with specified number_of_items, items are added by ref# (using item search)
 
     def create_so_with_several_items_found_by_ref(self, number_of_items, *items):
-        self.browser.find_element(*MPL.ADD_TRNX).click()
+        self.browser.find_element(*MPL.ADD_TRNX_OR_ITEM).click()
         self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys('C10008')
         self.browser.find_element(*MPL.SEARCH_TRNXS).click()
         self.browser.find_element(*MPL.CREATE_NEW).click()
@@ -69,7 +69,7 @@ class SalesOrder(BasePage):
     # creates a SO with several items(their number can be specified), checks the order has been created
 
     def create_so_with_several_random_items(self, number_of_items):
-        self.browser.find_element(*MPL.ADD_TRNX).click()
+        self.browser.find_element(*MPL.ADD_TRNX_OR_ITEM).click()
         self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys('C10008')
         self.browser.find_element(*MPL.SEARCH_TRNXS).click()
         self.browser.find_element(*MPL.CREATE_NEW).click()

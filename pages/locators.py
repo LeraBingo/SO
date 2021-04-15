@@ -1,8 +1,24 @@
 from selenium.webdriver.common.by import By
 
 
-class LoginPageLocators:
+class ItemPageLocators:
+    HAS_SERIAL_NUMBER_CHECKBOX = (By.CSS_SELECTOR, "#_hasSerialNumber")
+    ITEMS_ITEM_CODE = (By.CSS_SELECTOR, "#itemCode")
+    ITEMS_ITEM_DESCRIPTION = (By.CSS_SELECTOR, "#description")
+    ITEMS_ITEM_UC = (By.CSS_SELECTOR, "#costPrice")
+    ITEMS_ITEM_UP = (By.CSS_SELECTOR, "#itemPrice")
+    ITEMS_MULTIPACK_SECTION = (By.CSS_SELECTOR, "#Multi-packs")
+    ITEMS_PURCHASING_COST_TAB = (By.CSS_SELECTOR, "#tab2 > a")
+    ITEMS_STOCK_TAB = (By.CSS_SELECTOR, "#tab3 > a")
+    ITEMS_UOM_SECTION = (By.CSS_SELECTOR, "#Units\ of\ measure\ relationships")
+    NEW_STOCK_ITEM = (By.CSS_SELECTOR, "#stockItem")
+    UOM_SALES_UNITS = (By.CSS_SELECTOR, "#ratioSales")
+    UOM_STOCK_UNITS = (By.CSS_SELECTOR, "#umStock")
+    UOM_PURCHASE_UNITS = (By.CSS_SELECTOR, "#ratioPurchasing")
 
+
+
+class LoginPageLocators:
     ACC_NUM = (By.CSS_SELECTOR, "input#ID_ACCOUNTNUMBER")
     INVALID_LOGIN_TX = (By.CSS_SELECTOR, "#ID_LOGIN_ERROR > div > label > span")
     LOGIN_BTN = (By.CSS_SELECTOR, "#ID_LOGIN")
@@ -13,9 +29,8 @@ class LoginPageLocators:
 
 
 class MainPageLocators:
-
     ADD_ITEM_IN_ITEM_SELECTOR = (By.XPATH, "//tr[1]/td/img[@alt='add']")
-    ADD_TRNX = (By.XPATH, '//ul[2]/li[1]/button')
+    ADD_TRNX_OR_ITEM = (By.XPATH, '//ul[2]/li[1]/button')
     APL_DROPDOWN = (By.CSS_SELECTOR, "#priceList")
     APPLY_IN_ITEM_SEARCH = (By.CSS_SELECTOR, "#apply")
 
@@ -32,12 +47,12 @@ class MainPageLocators:
     ITEMS = (By.XPATH, '//*[@id="0.Items"]/a')
 
     LIST_ALL = (By.CSS_SELECTOR,
-               '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
+                '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
     LIST_ALL_ITEMS = (By.XPATH, "//*[contains(a, 'List all Items')]")
     LIST_ALL_ITEMS_TABLE = (By.XPATH, '//*[@id="panel1"]/section[3]')
 
     MAGNIFYING_GLASS_VIEW_SO = (
-    By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
+        By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
 
     PLEVEL_VALUE = (By.XPATH, '//*[@id="priceLevel"]/p')
     PL_VALUE = (By.XPATH, '//*[@id="priceList"]/p')

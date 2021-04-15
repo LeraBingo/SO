@@ -49,7 +49,7 @@ class TestSO:
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
         so.list_all_so()
-        so.create_so_with_several_random_items(5)
+        so.create_so_with_several_random_items(3)
 
     def test_edit_so(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
