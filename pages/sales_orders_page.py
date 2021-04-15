@@ -87,7 +87,7 @@ class SalesOrder(BasePage):
 
     # shows all SOs
 
-    def go_to_all_so(self):
+    def list_all_so(self):
         frame = self.browser.find_element_by_css_selector('#tree')
         self.browser.switch_to.frame(frame)
         self.browser.find_element(*MPL.SALES).click()

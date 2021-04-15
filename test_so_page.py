@@ -4,8 +4,6 @@ from pages.login_page import LoginPage
 from selenium.common.exceptions import UnexpectedAlertPresentException
 
 
-# pytest -k test_go_to_so_list
-
 class TestSO:
 
 
@@ -15,7 +13,7 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
-        so.go_to_all_so()
+        so.list_all_so()
 
     def test_search_by_ref_view(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
@@ -23,7 +21,7 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
-        so.go_to_all_so()
+        so.list_all_so()
         so.search_so_by_ref_and_view()
 
     def test_create_so(self, browser):
@@ -32,7 +30,7 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
-        so.go_to_all_so()
+        so.list_all_so()
         so.create_so('0001', 'cats')
 
     def test_create_so_with_several_items_by_ref(self, browser):
@@ -41,7 +39,7 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
-        so.go_to_all_so()
+        so.list_all_so()
         so.create_so_with_several_items_found_by_ref(3, '0001', '0002', '0003')
 
     def test_create_so_with_several_random_items(self, browser):
@@ -50,7 +48,7 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
-        so.go_to_all_so()
+        so.list_all_so()
         so.create_so_with_several_random_items(5)
 
     def test_edit_so(self, browser):
@@ -59,7 +57,7 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
-        so.go_to_all_so()
+        so.list_all_so()
         so.search_so_by_ref_and_view('SO10951')
         so.edit_so()
 
@@ -70,7 +68,7 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
-        so.go_to_all_so()
+        so.list_all_so()
         so.search_so_by_ref_and_view('SO10951')
         so.remember_order_item_values(3)
 
@@ -80,7 +78,7 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
-        so.go_to_all_so()
+        so.list_all_so()
         so.search_so_by_ref_and_view('SO10951')
         so.remember_order_values()
 

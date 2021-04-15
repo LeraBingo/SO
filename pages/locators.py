@@ -29,14 +29,19 @@ class MainPageLocators:
 
     HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
 
+    ITEMS = (By.XPATH, '//*[@id="0.Items"]/a')
+
     LIST_ALL = (By.CSS_SELECTOR,
-                '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
+               '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
+    LIST_ALL_ITEMS = (By.XPATH, "//*[contains(a, 'List all Items')]")
+    LIST_ALL_ITEMS_TABLE = (By.XPATH, '//*[@id="panel1"]/section[3]')
 
     MAGNIFYING_GLASS_VIEW_SO = (
     By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
 
     PLEVEL_VALUE = (By.XPATH, '//*[@id="priceLevel"]/p')
     PL_VALUE = (By.XPATH, '//*[@id="priceList"]/p')
+    PRODUCTS_SERVICES = (By.XPATH, '//*[@id="Inventory"]/h2/a')
 
     SALES = (By.CSS_SELECTOR, '#Sales > h2 > a')
     SAVE = (By.CSS_SELECTOR, "#construct")
