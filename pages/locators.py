@@ -3,6 +3,10 @@ from selenium.webdriver.common.by import By
 
 class ItemPageLocators:
     HAS_SERIAL_NUMBER_CHECKBOX = (By.CSS_SELECTOR, "#_hasSerialNumber")
+    ITEM_CATEGORY_1 = (By.CSS_SELECTOR, "#cat1")
+    ITEM_CATEGORY_2 = (By.CSS_SELECTOR, "#cat2")
+    ITEM_CLASS = (By.CSS_SELECTOR, "#type1")
+    ITEMS_CLASSIFICATION_TAB = (By.CSS_SELECTOR, "#tab4 > a")
     ITEMS_ITEM_CODE = (By.CSS_SELECTOR, "#itemCode")
     ITEMS_ITEM_DESCRIPTION = (By.CSS_SELECTOR, "#description")
     ITEMS_ITEM_UC = (By.CSS_SELECTOR, "#costPrice")
@@ -44,7 +48,7 @@ class MainPageLocators:
 
     HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
 
-    ITEMS = (By.XPATH, '//*[@id="0.Items"]/a')
+    ITEMS = (By.XPATH, '//*[@id="0.Items"]')
 
     LIST_ALL = (By.CSS_SELECTOR,
                 '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
