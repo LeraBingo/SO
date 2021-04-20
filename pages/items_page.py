@@ -14,6 +14,17 @@ class Items(BasePage):
         Select(self.browser.find_element(*IPL.ITEM_CATEGORY_1)).select_by_visible_text(cat1)
         Select(self.browser.find_element(*IPL.ITEM_CLASS)).select_by_visible_text(cls)
 
+    def add_uom_to_item(self, units, sales_ration, purchase_ration):
+        self.browser.find_element(*IPL.ITEMS_STOCK_TAB).click()
+        self.browser.find_element(*IPL.ITEMS_UOM_SECTION).click()
+        self.browser.find_element(*IPL.UOM_STOCK_UNITS).send_keys(units)
+        self.browser.find_element(*IPL.UOM_SALES_UNITS).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.UOM_SALES_UNITS).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.UOM_SALES_UNITS).send_keys(sales_ration)
+        self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(purchase_ration)
+
     # creates a stock item with descr, up, uc. !Without saving it!
 
 
