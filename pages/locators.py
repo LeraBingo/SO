@@ -51,7 +51,7 @@ class MainPageLocators:
 
     HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
 
-    ITEMS = (By.XPATH, '//*[@id="0.Items"]')
+    ITEMS = (By.XPATH, "//li/a/span[contains(text(), 'Items')]")
 
     LIST_ALL = (By.CSS_SELECTOR,
                 '#Form1 > div > div > div.title-action-bar-container > div.action-bar.group > nav > ul > li:nth-child(5) > a')
@@ -61,11 +61,13 @@ class MainPageLocators:
     MAGNIFYING_GLASS_VIEW_SO = (
         By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
 
+    ORDER_REF_NUMBER = (By.CSS_SELECTOR, '#objectUID')
+
     PLEVEL_VALUE = (By.XPATH, '//*[@id="priceLevel"]/p')
     PL_VALUE = (By.XPATH, '//*[@id="priceList"]/p')
-    PRODUCTS_SERVICES = (By.XPATH, '//*[@id="Inventory"]/h2/a')
+    PRODUCTS_SERVICES = (By.XPATH, '//*[@id="Inventory"]/h2')
 
-    SALES = (By.CSS_SELECTOR, '#Sales > h2 > a')
+    SALES = (By.XPATH, "//section[@id='Sales']/h2/a[contains(text(), 'Sales')]")
     SAVE = (By.CSS_SELECTOR, "#construct")
     SAVE_AFTER_EDIT = (By.CSS_SELECTOR, "#save")
     SEARCH_BTN_IN_ITEM_SELECTOR = (By.CSS_SELECTOR, "section#ItemsView input.search-button")
@@ -73,7 +75,7 @@ class MainPageLocators:
     SEARCH_ITEM_IN_ITEM_SELECTOR = (By.CSS_SELECTOR, "#itemSelectorSearchField")
     SEARCH_TRNXS = (By.CSS_SELECTOR, "#searchByReference")
     SHORTCUTS = (By.CSS_SELECTOR, "#shortcuts")
-    SO = (By.XPATH, "//li[@id='0.AllSalesOrders']/a/span")
+    SO = (By.XPATH, "//li/a/span[contains(text(), 'Sales Orders')]")
 
     TAX_VALUE = (By.XPATH, '//*[@id="taxCode"]/p')
 

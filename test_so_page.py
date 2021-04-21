@@ -1,7 +1,7 @@
-import pytest
 from pages.sales_orders_page import SalesOrder as SO
 from pages.login_page import LoginPage
-from selenium.common.exceptions import UnexpectedAlertPresentException
+from pages.items_page import Items as IT
+import random
 
 
 class TestSO:
@@ -33,7 +33,7 @@ class TestSO:
         so.list_all_so()
         so.create_so('0001', 'cats')
 
-    def test_create_so_with_several_items_by_ref(self, browser):
+    def test_create_so_with_several_existing_items_by_ref(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
@@ -41,6 +41,21 @@ class TestSO:
         so = SO(browser, link)
         so.list_all_so()
         so.create_so_with_several_items_found_by_ref(3, '0001', '0002', '0003')
+
+    def test_create_so_with_several_new_items_by_ref(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        it = IT(browser, link)
+        it.list_all_items()
+        item_code = f'lera{str(random.random())[:4]}'
+        it.creating_stock_item_with_decr_up_uc(item_code, 'stock', 100, 10)
+        it.save_item()
+        browser.switch_to_default_content()
+        so = SO(browser, link)
+        so.list_all_so()
+        so.create_so_with_several_items_found_by_ref(1, item_code)
 
     def test_create_so_with_several_random_items(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'

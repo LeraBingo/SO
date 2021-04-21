@@ -24,7 +24,7 @@ class TestItems:
         page.login('SOA424824', 'letmein', 'letmein')
         it = Items(browser, link)
         it.list_all_items()
-        code = str(random.random())[:4]
+        code = str(random.random())[:6]
         it.creating_stock_item_with_decr_up_uc(f'lera{code}', 'stock', 100, 10)
         it.add_class_and_category_to_item('newww', 'new cl')
         it.save_item()

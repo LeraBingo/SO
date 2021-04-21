@@ -3,6 +3,7 @@ from .base_page import BasePage
 from .locators import MainPageLocators as MPL
 from selenium.webdriver.support.ui import Select
 import time
+from pages.items_page import Items as IT
 
 
 class SalesOrder(BasePage):
@@ -65,6 +66,8 @@ class SalesOrder(BasePage):
         self.browser.find_element(*MPL.SAVE).click()
         header_text = self.browser.find_element(*MPL.HEADER_TX).text
         assert header_text.startswith('View'), "Order has not been created"
+        order_ref = self.browser.find_element(*MPL.ORDER_REF_NUMBER).get_attribute('value')
+        print('\nOrder ref - ', order_ref)
 
     # creates a SO with several items(their number can be specified), checks the order has been created
 
