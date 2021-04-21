@@ -7,12 +7,23 @@ from selenium.webdriver.support.ui import Select
 
 class Items(BasePage):
 
+    def add_multipack_to_item(self, name, barcode, units):
+        self.browser.find_element(*IPL.ITEMS_STOCK_TAB).click()
+        self.browser.find_element(*IPL.ITEMS_MULTIPACK_SECTION).click()
+        self.browser.find_element(*IPL.MULTIPACK_NAME).send_keys(name)
+        self.browser.find_element(*IPL.MULTIPACK_BARCODE).send_keys(barcode)
+        self.browser.find_element(*IPL.MULTIPACK_UNITS).send_keys(units)
+
+
+
     # selects a category + class
 
     def add_class_and_category_to_item(self, cat1, cls):
         self.browser.find_element(*IPL.ITEMS_CLASSIFICATION_TAB).click()
         Select(self.browser.find_element(*IPL.ITEM_CATEGORY_1)).select_by_visible_text(cat1)
         Select(self.browser.find_element(*IPL.ITEM_CLASS)).select_by_visible_text(cls)
+
+    # adds uom
 
     def add_uom_to_item(self, units, sales_ration, purchase_ration):
         self.browser.find_element(*IPL.ITEMS_STOCK_TAB).click()
@@ -27,7 +38,6 @@ class Items(BasePage):
 
     # creates a stock item with descr, up, uc. !Without saving it!
 
-
     def creating_stock_item_with_decr_up_uc(self, item_code, descr, up, uc):
         self.browser.find_element(*MPL.ADD_TRNX_OR_ITEM).click()
         self.browser.find_element(*IPL.NEW_STOCK_ITEM).click()
@@ -40,9 +50,9 @@ class Items(BasePage):
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.CONTROL + "a")
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.DELETE)
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(uc)
+        print('\nItem code -', item_code)
 
-
-
+    # list all the items. !Note! sometimes it selects 'Stock' instead of 'Items'. Needs to be investigated
 
     def list_all_items(self):
         frame = self.browser.find_element_by_css_selector('#tree')
@@ -61,6 +71,7 @@ class Items(BasePage):
         self.browser.find_element(*MPL.SAVE).click()
         header_text = self.browser.find_element(*MPL.HEADER_TX).text
         assert header_text.startswith('View'), f'Item has not been created'
+
 
 
 
