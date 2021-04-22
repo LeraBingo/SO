@@ -64,6 +64,7 @@ class MainPageLocators:
     ORDER_REF_NUMBER = (By.CSS_SELECTOR, '#objectUID')
 
     PLEVEL_VALUE = (By.XPATH, '//*[@id="priceLevel"]/p')
+    PLUS_FOR_ITEMS =(By.XPATH, "//li/a/span[contains(text(), 'Items')]/button")
     PL_VALUE = (By.XPATH, '//*[@id="priceList"]/p')
     PRODUCTS_SERVICES = (By.XPATH, '//*[@id="Inventory"]/h2')
 

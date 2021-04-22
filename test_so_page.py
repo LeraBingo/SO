@@ -49,13 +49,22 @@ class TestSO:
         page.login('SOA424824', 'letmein', 'letmein')
         it = IT(browser, link)
         it.list_all_items()
-        item_code = f'lera{str(random.random())[:4]}'
+        num_of_items = 2
+        item_codes = []
+        item_code = f'lera{str(random.random())[:5]}'
         it.creating_stock_item_with_decr_up_uc(item_code, 'stock', 100, 10)
+        item_codes.append(item_code)
         it.save_item()
+        for item in range(num_of_items-1):
+            browser.switch_to_default_content()
+            item_code = f'lera{str(random.random())[:5]}'
+            item_codes.append(item_code)
+            it.add_item_with_plus(item_code, 'stock', 100, 10)
+            it.save_item()
         browser.switch_to_default_content()
         so = SO(browser, link)
         so.list_all_so()
-        so.create_so_with_several_items_found_by_ref(1, item_code)
+        so.create_so_with_several_items_found_by_ref(2, *item_codes)
 
     def test_create_so_with_several_random_items(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
