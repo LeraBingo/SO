@@ -4,8 +4,34 @@ from .locators import ItemPageLocators as IPL
 import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 class Items(BasePage):
+
+    def add_item_with_plus(self, item_code, descr, up, uc):
+        frame = self.browser.find_element_by_css_selector('#tree')
+        self.browser.switch_to.frame(frame)
+        element_to_hover_over = self.browser.find_element(*MPL.ITEMS)
+        hover = ActionChains(self.browser).move_to_element(element_to_hover_over)
+        hover.perform()
+        self.browser.find_element(*MPL.PLUS_FOR_ITEMS).click()
+        self.browser.switch_to_default_content()
+        frame = self.browser.find_element_by_css_selector('#workarea')
+        self.browser.switch_to.frame(frame)
+        self.browser.find_element(*IPL.NEW_STOCK_ITEM).click()
+        self.browser.find_element(*IPL.ITEMS_ITEM_CODE).send_keys(item_code)
+        self.browser.find_element(*IPL.ITEMS_ITEM_DESCRIPTION).send_keys(descr)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(up)
+        self.browser.find_element(*IPL.ITEMS_PURCHASING_COST_TAB).click()
+        self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(uc)
+        print('\nItem code -', item_code)
+
+
 
     def add_multipack_to_item(self, name, barcode, units):
         self.browser.find_element(*IPL.ITEMS_STOCK_TAB).click()
@@ -58,6 +84,7 @@ class Items(BasePage):
         frame = self.browser.find_element_by_css_selector('#tree')
         self.browser.switch_to.frame(frame)
         self.browser.find_element(*MPL.PRODUCTS_SERVICES).click()
+        time.sleep(2)
         self.browser.find_element(*MPL.ITEMS).click()
         self.browser.switch_to.default_content()
         frame = self.browser.find_element_by_css_selector('#workarea')
