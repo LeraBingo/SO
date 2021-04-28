@@ -49,6 +49,18 @@ class Items(BasePage):
         Select(self.browser.find_element(*IPL.ITEM_CATEGORY_1)).select_by_visible_text(cat1)
         Select(self.browser.find_element(*IPL.ITEM_CLASS)).select_by_visible_text(cls)
 
+    # adds number_of_items to bom
+
+    def add_several_items_to_bom_by_ref(self, number_of_items, *items):
+        self.browser.find_element(*IPL.BOM_FIND_ITEM).click()
+        for i in range(number_of_items):
+            self.browser.find_element(*MPL.SEARCH_ITEM_IN_ITEM_SELECTOR).send_keys(items[i])
+            time.sleep(3)  # for the table to be refreshed
+            self.browser.find_element(*MPL.ADD_ITEM_IN_ITEM_SELECTOR).click()
+            self.browser.find_element(*MPL.SEARCH_ITEM_IN_ITEM_SELECTOR).clear()
+        time.sleep(5)
+        self.browser.find_element(*MPL.APPLY_IN_ITEM_SEARCH).click()
+
     # adds uom
 
     def add_uom_to_item(self, units, sales_ration, purchase_ration):
@@ -62,6 +74,25 @@ class Items(BasePage):
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(Keys.DELETE)
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(purchase_ration)
 
+
+    def creating_assembly_with_decr_up_uc(self, item_code, descr, up, uc):
+        self.browser.find_element(*MPL.ADD_TRNX_OR_ITEM).click()
+        self.browser.find_element(*IPL.NEW_ASSEMBLY_ITEM).click()
+        self.browser.find_element(*IPL.ITEMS_ITEM_CODE).send_keys(item_code)
+        self.browser.find_element(*IPL.ITEMS_ITEM_DESCRIPTION).send_keys(descr)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(up)
+
+        self.browser.find_element(*IPL.ITEMS_BOM_TAB).click()
+        self.add_several_items_to_bom_by_ref(2, '0001', '0002')
+
+        self.browser.find_element(*IPL.ITEMS_PURCHASING_COST_TAB).click()
+        self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(uc)
+        print('\nItem code -', item_code)
+
     # creates a stock item with descr, up, uc. !Without saving it!
 
     def creating_stock_item_with_decr_up_uc(self, item_code, descr, up, uc):
@@ -72,6 +103,8 @@ class Items(BasePage):
         self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.CONTROL + "a")
         self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.DELETE)
         self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(up)
+
+        time.sleep(5)
         self.browser.find_element(*IPL.ITEMS_PURCHASING_COST_TAB).click()
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.CONTROL + "a")
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.DELETE)

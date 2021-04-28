@@ -2,7 +2,9 @@ from selenium.webdriver.common.by import By
 
 
 class ItemPageLocators:
+    BOM_FIND_ITEM = (By.CSS_SELECTOR, "#ptr_itemPtr_li\.0 > a.dbc-find-ITEMS.list.find-btn")
     HAS_SERIAL_NUMBER_CHECKBOX = (By.CSS_SELECTOR, "#_hasSerialNumber")
+    ITEMS_BOM_TAB = (By.XPATH, "//nav[@class='custom-tabs group']/ul/li/a[contains(text(),'BOM')]")
     ITEM_CATEGORY_1 = (By.CSS_SELECTOR, "#cat1")
     ITEM_CATEGORY_2 = (By.CSS_SELECTOR, "#cat2")
     ITEM_CLASS = (By.CSS_SELECTOR, "#type1")
@@ -12,12 +14,14 @@ class ItemPageLocators:
     ITEMS_ITEM_UC = (By.CSS_SELECTOR, "#costPrice")
     ITEMS_ITEM_UP = (By.CSS_SELECTOR, "#itemPrice")
     ITEMS_MULTIPACK_SECTION = (By.CSS_SELECTOR, "#Multi-packs")
-    ITEMS_PURCHASING_COST_TAB = (By.CSS_SELECTOR, "#tab2 > a")
-    ITEMS_STOCK_TAB = (By.CSS_SELECTOR, "#tab3 > a")
+    ITEMS_PURCHASING_COST_TAB = (By.XPATH, '//a[contains(text(),"Purchasing/Costs")]')
+    ITEMS_STOCK_TAB = (By.CSS_SELECTOR, "//nav[@class='custom-tabs group']/ul/li/a[contains(text(),'Stock')]")
     ITEMS_UOM_SECTION = (By.CSS_SELECTOR, "#Units\ of\ measure\ relationships")
     MULTIPACK_BARCODE= (By.CSS_SELECTOR, "#barcode_uoms\.0")
     MULTIPACK_NAME = (By.CSS_SELECTOR, "#name_uoms\.0")
     MULTIPACK_UNITS = (By.CSS_SELECTOR, "#stockUnits_uoms\.0")
+    NEW_ASSEMBLY_ITEM = (By.CSS_SELECTOR, "#assemblyItem")
+    NEW_KIT_ITEM = (By.CSS_SELECTOR, "#kitItem")
     NEW_STOCK_ITEM = (By.CSS_SELECTOR, "#stockItem")
     UOM_SALES_UNITS = (By.CSS_SELECTOR, "#ratioSales")
     UOM_STOCK_UNITS = (By.CSS_SELECTOR, "#umStock")
@@ -39,7 +43,7 @@ class MainPageLocators:
     ADD_ITEM_IN_ITEM_SELECTOR = (By.XPATH, "//tr[1]/td/img[@alt='add']")
     ADD_TRNX_OR_ITEM = (By.XPATH, '//ul[2]/li[1]/button')
     APL_DROPDOWN = (By.CSS_SELECTOR, "#priceList")
-    APPLY_IN_ITEM_SEARCH = (By.CSS_SELECTOR, "#apply")
+    APPLY_IN_ITEM_SEARCH = (By.XPATH, "//*[@id='apply']")
 
     COLLAPSE_BTN = (By.CSS_SELECTOR, "#tabPanel > nav > div.tree-controls.group > a.collapse.group")
     CREATE_NEW = (By.XPATH, "(//a[contains(text(),'Create New')])")
