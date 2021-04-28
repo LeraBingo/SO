@@ -1,6 +1,7 @@
 from pages.items_page import Items
 from pages.login_page import LoginPage
 import random
+import time
 
 
 
@@ -15,6 +16,17 @@ class TestItems:
         it.list_all_items()
         code = str(random.random())[:5]
         it.creating_assembly_with_decr_up_uc(f'lera{code}', 'assembly', 100, 10)
+        it.save_item()
+
+    def test_create_kit_with_descr_up_uc(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424774', 'letmein', 'letmein')
+        it = Items(browser, link)
+        it.list_all_items()
+        code = str(random.random())[:5]
+        it.creating_kit_with_decr_up_uc(f'lera{code}', 'kit', 100)
         it.save_item()
 
     def test_create_stock_item_with_descr_up_uc(self, browser):

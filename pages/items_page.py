@@ -74,6 +74,7 @@ class Items(BasePage):
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(Keys.DELETE)
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(purchase_ration)
 
+    # creates an assembly item with descr, up, uc. !Without saving it!
 
     def creating_assembly_with_decr_up_uc(self, item_code, descr, up, uc):
         self.browser.find_element(*MPL.ADD_TRNX_OR_ITEM).click()
@@ -91,6 +92,18 @@ class Items(BasePage):
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.CONTROL + "a")
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.DELETE)
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(uc)
+        print('\nItem code -', item_code)
+
+    def creating_kit_with_decr_up_uc(self, item_code, descr, up):
+        self.browser.find_element(*MPL.ADD_TRNX_OR_ITEM).click()
+        self.browser.find_element(*IPL.NEW_KIT_ITEM).click()
+        self.browser.find_element(*IPL.ITEMS_ITEM_CODE).send_keys(item_code)
+        self.browser.find_element(*IPL.ITEMS_ITEM_DESCRIPTION).send_keys(descr)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(up)
+        self.browser.find_element(*IPL.ITEMS_BOM_TAB).click()
+        self.add_several_items_to_bom_by_ref(2, '0001', '0002')
         print('\nItem code -', item_code)
 
     # creates a stock item with descr, up, uc. !Without saving it!
@@ -116,6 +129,7 @@ class Items(BasePage):
     def list_all_items(self):
         frame = self.browser.find_element_by_css_selector('#tree')
         self.browser.switch_to.frame(frame)
+        self.browser.find_element(*MPL.COLLAPSE_BTN).click()
         self.browser.find_element(*MPL.PRODUCTS_SERVICES).click()
         time.sleep(2)
         self.browser.find_element(*MPL.ITEMS).click()
