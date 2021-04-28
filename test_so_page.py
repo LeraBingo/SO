@@ -59,7 +59,7 @@ class TestSO:
             browser.switch_to_default_content()
             item_code = f'lera{str(random.random())[:5]}'
             item_codes.append(item_code)
-            it.add_item_with_plus(item_code, 'stock', 100, 10)
+            it.add_stock_item_with_plus(item_code, 'stock', 100, 10)
             it.save_item()
         browser.switch_to_default_content()
         so = SO(browser, link)

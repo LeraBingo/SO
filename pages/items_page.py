@@ -5,11 +5,32 @@ import time
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
-
+import random
 
 class Items(BasePage):
 
-    def add_item_with_plus(self, item_code, descr, up, uc):
+
+    def add_assembly_with_plus(self, item_code, descr, up, uc):
+        frame = self.browser.find_element_by_css_selector('#tree')
+        self.browser.switch_to.frame(frame)
+        element_to_hover_over = self.browser.find_element(*MPL.ITEMS)
+        hover = ActionChains(self.browser).move_to_element(element_to_hover_over)
+        hover.perform()
+        self.browser.find_element(*MPL.PLUS_FOR_ITEMS).click()
+        self.browser.switch_to_default_content()
+        frame = self.browser.find_element_by_css_selector('#workarea')
+        self.browser.switch_to.frame(frame)
+        self.browser.find_element(*IPL.NEW_ASSEMBLY_ITEM).click()
+        self.browser.find_element(*IPL.ITEMS_ITEM_CODE).send_keys(item_code)
+        self.browser.find_element(*IPL.ITEMS_ITEM_DESCRIPTION).send_keys(descr)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(up)
+        self.browser.find_element(*IPL.ITEMS_BOM_TAB).click()
+        self.add_several_items_to_bom_by_ref(2, '0001', '0002')
+        print('\nItem code -', item_code)
+
+    def add_stock_item_with_plus(self, item_code, descr, up, uc):
         frame = self.browser.find_element_by_css_selector('#tree')
         self.browser.switch_to.frame(frame)
         element_to_hover_over = self.browser.find_element(*MPL.ITEMS)
@@ -29,6 +50,26 @@ class Items(BasePage):
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.CONTROL + "a")
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(Keys.DELETE)
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(uc)
+        print('\nItem code -', item_code)
+
+    def add_kit_with_plus(self, item_code, descr, up):
+        frame = self.browser.find_element_by_css_selector('#tree')
+        self.browser.switch_to.frame(frame)
+        element_to_hover_over = self.browser.find_element(*MPL.ITEMS)
+        hover = ActionChains(self.browser).move_to_element(element_to_hover_over)
+        hover.perform()
+        self.browser.find_element(*MPL.PLUS_FOR_ITEMS).click()
+        self.browser.switch_to_default_content()
+        frame = self.browser.find_element_by_css_selector('#workarea')
+        self.browser.switch_to.frame(frame)
+        self.browser.find_element(*IPL.NEW_KIT_ITEM).click()
+        self.browser.find_element(*IPL.ITEMS_ITEM_CODE).send_keys(item_code)
+        self.browser.find_element(*IPL.ITEMS_ITEM_DESCRIPTION).send_keys(descr)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.CONTROL + "a")
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(Keys.DELETE)
+        self.browser.find_element(*IPL.ITEMS_ITEM_UP).send_keys(up)
+        self.browser.find_element(*IPL.ITEMS_BOM_TAB).click()
+        self.add_several_items_to_bom_by_ref(2, '0001', '0002')
         print('\nItem code -', item_code)
 
 
@@ -73,6 +114,18 @@ class Items(BasePage):
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(Keys.CONTROL + "a")
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(Keys.DELETE)
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(purchase_ration)
+
+    def create_specified_number_of_items(self, num_of_items, item_type):
+        for item in range(num_of_items):
+            self.browser.switch_to_default_content()
+            item_code = f'lera{str(random.random())[:5]}'
+            if item_type == 'stock':
+                self.add_stock_item_with_plus(item_code, 'stock', 100, 10)
+            elif item_type == 'kit':
+                self.add_kit_with_plus(item_code, 'kit', 100)
+            elif item_type == 'assembly':
+                self.add_assembly_with_plus(item_code, 'assembly', 100, 10)
+            self.save_item()
 
     # creates an assembly item with descr, up, uc. !Without saving it!
 
