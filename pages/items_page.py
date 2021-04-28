@@ -6,6 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
 import random
+import re
 
 class Items(BasePage):
 
@@ -198,6 +199,20 @@ class Items(BasePage):
         self.browser.find_element(*MPL.SAVE).click()
         header_text = self.browser.find_element(*MPL.HEADER_TX).text
         assert header_text.startswith('View'), f'Item has not been created'
+
+    # compares item_code searched with the item codes in the table.
+    # !Regex can be improved! only positive flow presented!
+
+    def search_by_item_code(self, item_code):
+        self.browser.find_element(*IPL.SEARCH_BY_ITEM_CODE).send_keys(item_code)
+        self.browser.find_element(*IPL.SEARCH_BTN).click()
+        codes =self.browser.find_elements(*IPL.TABLE_ITEM_CODES)
+        item_code = re.escape(item_code)
+        pattern = re.sub('\\\\\*', '.', item_code)
+        for code in codes:
+            code = code.text
+            assert re.match(pattern, code), f'Code {code} is not equal to the searched item code {item_code}'
+
 
 
 
