@@ -213,6 +213,14 @@ class Items(BasePage):
             code = code.text
             assert re.match(pattern, code), f'Code {code} is not equal to the searched item code {item_code}'
 
+    def view_item(self):
+        item_code = '0001'
+        self.list_all_items()
+        self.search_by_item_code(item_code)
+        self.browser.find_element(*IPL.VIEW_ICON).click()
+        header_item_code = self.browser.find_element(*IPL.HEADER_TX_VIEW_ITEM).text
+        assert item_code == header_item_code
+
 
 
 

@@ -101,3 +101,11 @@ class TestItems:
         it = Items(browser, link)
         it.list_all_items()
         it.search_by_item_code('lera0.7*')
+
+    def test_view_found_by_code_item(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        it = Items(browser, link)
+        it.view_item()

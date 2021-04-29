@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 class ItemPageLocators:
     BOM_FIND_ITEM = (By.CSS_SELECTOR, "#ptr_itemPtr_li\.0 > a.dbc-find-ITEMS.list.find-btn")
     HAS_SERIAL_NUMBER_CHECKBOX = (By.CSS_SELECTOR, "#_hasSerialNumber")
+    HEADER_TX_VIEW_ITEM = (By.CSS_SELECTOR, "#_inst")
     ITEMS_BOM_TAB = (By.XPATH, "//nav[@class='custom-tabs group']/ul/li/a[contains(text(),'BOM')]")
     ITEM_CATEGORY_1 = (By.CSS_SELECTOR, "#cat1")
     ITEM_CATEGORY_2 = (By.CSS_SELECTOR, "#cat2")
@@ -29,6 +30,7 @@ class ItemPageLocators:
     UOM_SALES_UNITS = (By.CSS_SELECTOR, "#ratioSales")
     UOM_STOCK_UNITS = (By.CSS_SELECTOR, "#umStock")
     UOM_PURCHASE_UNITS = (By.CSS_SELECTOR, "#ratioPurchasing")
+    VIEW_ICON = (By.CSS_SELECTOR, "tbody > tr:nth-child(1) > td > a.search-icon")
 
 
 
