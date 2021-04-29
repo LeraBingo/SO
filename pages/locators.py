@@ -1,5 +1,7 @@
 from selenium.webdriver.common.by import By
 
+class AplPageLocators:
+    LIST_ALL_APLS_TABLE = (By.CSS_SELECTOR, "#advancedPriceLists_table_header")
 
 class ItemPageLocators:
     BOM_FIND_ITEM = (By.CSS_SELECTOR, "#ptr_itemPtr_li\.0 > a.dbc-find-ITEMS.list.find-btn")
@@ -54,6 +56,7 @@ class MainPageLocators:
     ADD_ITEM_IN_ITEM_SELECTOR = (By.XPATH, "//tr[1]/td/img[@alt='add']")
     ADD_TRNX_OR_ITEM = (By.XPATH, '//ul[2]/li[1]/button')
     APL_DROPDOWN = (By.CSS_SELECTOR, "#priceList")
+    APLS = (By.XPATH, "//li/a/span[contains(text(), 'Advanced Price Lists')]")
     APPLY_IN_ITEM_SEARCH = (By.XPATH, "//*[@id='apply']")
 
     COLLAPSE_BTN = (By.CSS_SELECTOR, "#tabPanel > nav > div.tree-controls.group > a.collapse.group")
