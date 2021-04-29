@@ -185,7 +185,16 @@ class Items(BasePage):
         msg_after_deleting_item = self.browser.find_element(*IPL.MSG_ABOUT_ITEM_DELETED).text
         assert msg_after_deleting_item == 'Delete operation completed', f'Wrong text has been received - {msg_after_deleting_item}'
 
+    # this is the basic: edit->save changes. Changes should be implemented separately
 
+    def edit_item(self):
+        self.browser.find_element(*IPL.EDIT_ITEM).click()
+        header_tx = self.browser.find_element(*IPL.HEADER_TX_EDIT_ITEM).text
+        assert header_tx.startswith('Edit')
+        # here we do some stuff
+        self.browser.find_element(*IPL.SAVE_BTN_FOR_EDITED_ITEM).click()
+        header_text = self.browser.find_element(*MPL.HEADER_TX).text
+        assert header_text.startswith('View'), f'The changes have not been saved'
 
     # list all the items. !Note! sometimes it selects 'Stock' instead of 'Items'. Needs to be investigated
 

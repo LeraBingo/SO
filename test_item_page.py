@@ -93,6 +93,15 @@ class TestItems:
         it = Items(browser, link)
         it.delete_item('lera0.2697202294033354')
 
+    def test_edit_item(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        it = Items(browser, link)
+        it.view_item('lera0.73')
+        it.edit_item()
+
     def test_go_to_item_list(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
