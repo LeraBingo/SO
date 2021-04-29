@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 
 class ItemPageLocators:
     BOM_FIND_ITEM = (By.CSS_SELECTOR, "#ptr_itemPtr_li\.0 > a.dbc-find-ITEMS.list.find-btn")
+    CONFIRM_DELETING_BTN = (By.CSS_SELECTOR, "div.jconfirm-buttons>button:nth-child(1)")
+    DELETE_ITEM_BTN = (By.XPATH, "//a[text()[contains(.,'Delete')]]")
     HAS_SERIAL_NUMBER_CHECKBOX = (By.CSS_SELECTOR, "#_hasSerialNumber")
     HEADER_TX_VIEW_ITEM = (By.CSS_SELECTOR, "#_inst")
     ITEMS_BOM_TAB = (By.XPATH, "//nav[@class='custom-tabs group']/ul/li/a[contains(text(),'BOM')]")
@@ -18,6 +20,7 @@ class ItemPageLocators:
     ITEMS_PURCHASING_COST_TAB = (By.XPATH, '//a[contains(text(),"Purchasing/Costs")]')
     ITEMS_STOCK_TAB = (By.CSS_SELECTOR, "//nav[@class='custom-tabs group']/ul/li/a[contains(text(),'Stock')]")
     ITEMS_UOM_SECTION = (By.CSS_SELECTOR, "#Units\ of\ measure\ relationships")
+    MSG_ABOUT_ITEM_DELETED = (By.CSS_SELECTOR, "#message")
     MULTIPACK_BARCODE= (By.CSS_SELECTOR, "#barcode_uoms\.0")
     MULTIPACK_NAME = (By.CSS_SELECTOR, "#name_uoms\.0")
     MULTIPACK_UNITS = (By.CSS_SELECTOR, "#stockUnits_uoms\.0")

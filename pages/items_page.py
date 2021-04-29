@@ -178,6 +178,15 @@ class Items(BasePage):
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(uc)
         print('\nItem code -', item_code)
 
+    def delete_item(self, item_code):
+        self.view_item(item_code)
+        self.browser.find_element(*IPL.DELETE_ITEM_BTN).click()
+        self.browser.find_element(*IPL.CONFIRM_DELETING_BTN).click()
+        msg_after_deleting_item = self.browser.find_element(*IPL.MSG_ABOUT_ITEM_DELETED).text
+        assert msg_after_deleting_item == 'Delete operation completed', f'Wrong text has been received - {msg_after_deleting_item}'
+
+
+
     # list all the items. !Note! sometimes it selects 'Stock' instead of 'Items'. Needs to be investigated
 
     def list_all_items(self):
@@ -213,8 +222,7 @@ class Items(BasePage):
             code = code.text
             assert re.match(pattern, code), f'Code {code} is not equal to the searched item code {item_code}'
 
-    def view_item(self):
-        item_code = '0001'
+    def view_item(self, item_code = '0001'):
         self.list_all_items()
         self.search_by_item_code(item_code)
         self.browser.find_element(*IPL.VIEW_ICON).click()

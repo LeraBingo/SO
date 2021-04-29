@@ -85,6 +85,14 @@ class TestItems:
         it.add_uom_to_item('lera_units', 5, 10)
         it.save_item()
 
+    def test_delete_item(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        it = Items(browser, link)
+        it.delete_item('lera0.2697202294033354')
+
     def test_go_to_item_list(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
