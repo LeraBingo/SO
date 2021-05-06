@@ -1,7 +1,22 @@
 from selenium.webdriver.common.by import By
 
 class AplPageLocators:
+    APL_APPLY_TO_DROPDOWN = (By.CSS_SELECTOR, "#applyTo")
+    APL_DESCRIPTION = (By.CSS_SELECTOR, "#description")
+    APL_CREATE_NEW = (By.CSS_SELECTOR, "#_header_text~ul>li>button")
+    APL_CURRENCY_DROPDOWN = (By.CSS_SELECTOR, "#currency")
+    APL_CUS_DISCOUNT_METHOD_DROPDOWN = (By.CSS_SELECTOR, "#priceDiscountMethod")
+    APL_SUP_DISCOUNT_METHOD_DROPDOWN = (By.CSS_SELECTOR, "#costDiscountMethod")
+    AOL_EXCLUDE_CHECKBOX = (By.CSS_SELECTOR, "#_exclusive")
+    APL_GENERAL_COST_DISCOUNT = (By.CSS_SELECTOR, "#costDefaultDiscount")
+    APL_GENERAL_PRICE_DISCOUNT = (By.CSS_SELECTOR, "#priceDefaultDiscount")
+    APL_NAME = (By.CSS_SELECTOR, "#name")
+    APL_COST_FORMULA = (By.CSS_SELECTOR, "#costDefaultQuantityFormula")
+    APL_PRICE_FORMULA = (By.CSS_SELECTOR, "#priceDefaultQuantityFormula")
+    APL_USE_AS_DEFAULT_CUS_CHECKBOX = (By.CSS_SELECTOR, "#_isDefaultForCustomers")
+    APL_USE_AS_DEFAULT_SUP_CHECKBOX = (By.CSS_SELECTOR, "#_isDefaultForSuppliers")
     LIST_ALL_APLS_TABLE = (By.CSS_SELECTOR, "#advancedPriceLists_table_header")
+
 
 class ItemPageLocators:
     BOM_FIND_ITEM = (By.CSS_SELECTOR, "#ptr_itemPtr_li\.0 > a.dbc-find-ITEMS.list.find-btn")
