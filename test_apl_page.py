@@ -25,7 +25,6 @@ class TestApls:
         apl.list_all_apls()
         name = 'lera' + str(random.random())[:5]
         apl.create_new_apl_apply_to_supplier('Supplier', name, 'test', 'GBP', 'no', 'Use Unit Cost', 'yes', 'skip', '[1-:10.0000]')
-        apl.save_new_apl(name)
         apl.delete_apl()
 
     def test_list_all_apls(self, browser):
