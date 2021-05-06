@@ -22,6 +22,10 @@ class AplPageLocators:
     CONFIRM_DELETING_BTN = (By.CSS_SELECTOR, "div.jconfirm-buttons>button:nth-child(1)")
     LIST_ALL_APLS_TABLE = (By.CSS_SELECTOR, "#advancedPriceLists_table_header")
     MSG_ABOUT_APL_DELETED = (By.CSS_SELECTOR, "#message")
+    SEARCH_BTN = (By.CSS_SELECTOR, "#quickSearch")
+    SEARCH_BY_APL_NAME = (By.CSS_SELECTOR, "#quickSearchName")
+    TABLE_APLS = (By.CSS_SELECTOR, "#advancedPriceLists_table tbody td:nth-child(3)")
+    VIEW_ICON = (By.CSS_SELECTOR, "tbody > tr:nth-child(1) > td > a.search-icon")
 
 
 

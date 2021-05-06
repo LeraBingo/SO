@@ -34,3 +34,11 @@ class TestApls:
         page.login('SOA424824', 'letmein', 'letmein')
         apl = Apls(browser, link)
         apl.list_all_apls()
+
+    def test_view_found_by_code_item(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        apl = Apls(browser, link)
+        apl.view_apl('lera0.107')
