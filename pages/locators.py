@@ -6,6 +6,7 @@ class AplPageLocators:
     APL_CREATE_NEW = (By.CSS_SELECTOR, "#_header_text~ul>li>button")
     APL_CURRENCY_DROPDOWN = (By.CSS_SELECTOR, "#currency")
     APL_CUS_DISCOUNT_METHOD_DROPDOWN = (By.CSS_SELECTOR, "#priceDiscountMethod")
+    APL_DELETE = (By.XPATH, "//a[text()[contains(.,'Delete')]]")
     APL_EXCLUDE_CHECKBOX = (By.CSS_SELECTOR, "#_exclusive")
     APL_GENERAL_COST_DISCOUNT = (By.CSS_SELECTOR, "#costDefaultDiscount")
     APL_GENERAL_PRICE_DISCOUNT = (By.CSS_SELECTOR, "#priceDefaultDiscount")
@@ -14,11 +15,14 @@ class AplPageLocators:
     APL_NAME = (By.CSS_SELECTOR, "#name")
     APL_COST_FORMULA = (By.CSS_SELECTOR, "#costDefaultQuantityFormula")
     APL_PRICE_FORMULA = (By.CSS_SELECTOR, "#priceDefaultQuantityFormula")
+    APL_SAVE = (By.XPATH, "//a[text()[contains(.,'Save')]]")
     APL_SUP_DISCOUNT_METHOD_DROPDOWN = (By.CSS_SELECTOR, "#costDiscountMethod")
     APL_USE_AS_DEFAULT_CUS_CHECKBOX = (By.CSS_SELECTOR, "#_isDefaultForCustomers")
     APL_USE_AS_DEFAULT_SUP_CHECKBOX = (By.CSS_SELECTOR, "#_isDefaultForSuppliers")
+    CONFIRM_DELETING_BTN = (By.CSS_SELECTOR, "div.jconfirm-buttons>button:nth-child(1)")
     LIST_ALL_APLS_TABLE = (By.CSS_SELECTOR, "#advancedPriceLists_table_header")
-    SAVE_APL = (By.XPATH, "//a[text()[contains(.,'Save')]]")
+    MSG_ABOUT_APL_DELETED = (By.CSS_SELECTOR, "#message")
+
 
 
 class ItemPageLocators:
