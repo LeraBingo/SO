@@ -13,8 +13,8 @@ class TestApls:
         apl = Apls(browser, link)
         apl.list_all_apls()
         name = 'lera'+str(random.random())[:5]
-        apl.create_new_apl_apply_to_customer(name, 'test', 'GBP', 'yes', 'Use Unit Price', 'no', '10', '[1-:10]' )
-        apl.save_new_apl(name)
+        apl.create_new_apl_apply_to_customer(name, 'test', 'GBP', 'no', 'Use Discount', 'yes', '10.00', '[1-:10.00%]' )
+        apl.delete_apl()
 
     def test_create_apl_for_sup(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
@@ -24,7 +24,7 @@ class TestApls:
         apl = Apls(browser, link)
         apl.list_all_apls()
         name = 'lera' + str(random.random())[:5]
-        apl.create_new_apl_apply_to_supplier('Supplier', name, 'test', 'GBP', 'no', 'Use Unit Cost', 'yes', '10', '[1-:10]')
+        apl.create_new_apl_apply_to_supplier('Supplier', name, 'test', 'GBP', 'no', 'Use Unit Cost', 'yes', 'skip', '[1-:10.0000]')
         apl.save_new_apl(name)
         apl.delete_apl()
 
