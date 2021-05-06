@@ -10,7 +10,7 @@ from selenium.webdriver.support.ui import Select
 class Apls(BasePage):
 
     # creates apl with apply to = customer. !without saving it
-    # if a parametar must be skipped - write 'skip' (implemented for gen_price_disc, formula)
+    # if a parameter must be skipped - write 'skip' (implemented for gen_price_disc, formula)
     # for checkboxes write 'yes' to enable them
     # dropdown values should be fully matched!
 
@@ -33,10 +33,6 @@ class Apls(BasePage):
         time.sleep(5)
 
 
-
-
-
-
     def list_all_apls(self):
         frame = self.browser.find_element_by_css_selector('#tree')
         self.browser.switch_to.frame(frame)
@@ -48,3 +44,10 @@ class Apls(BasePage):
         frame = self.browser.find_element_by_css_selector('#workarea')
         self.browser.switch_to.frame(frame)
         assert self.is_element_present(*APL.LIST_ALL_APLS_TABLE), 'The apl table is not present'
+
+
+    def save_new_apl(self, name):
+        self.browser.find_element(*APL.SAVE_APL).click()
+        header_tx = f'{self.browser.find_element(*APL.APL_HEADER_TX).text}'
+        assert header_tx == f'View Advanced Price List {name}', f'The actual text header is - {header_tx}'
+

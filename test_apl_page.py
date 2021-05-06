@@ -14,6 +14,7 @@ class TestApls:
         apl.list_all_apls()
         name = 'lera'+str(random.random())[:5]
         apl.create_new_apl_apply_to_customer(name, 'test', 'GBP', 'yes', 'Use Unit Price', 'no', '10', '[1-:10]' )
+        apl.save_new_apl(name)
 
     def test_list_all_apls(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
