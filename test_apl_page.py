@@ -13,7 +13,7 @@ class TestApls:
         apl = Apls(browser, link)
         apl.list_all_apls()
         name = 'lera'+str(random.random())[:5]
-        apl.create_new_apl_apply_to_customer(name, 'test', 'GBP', 'no', 'Use Discount', 'yes', '10.00', '[1-:10.00%]' )
+        apl.create_new_apl_apply_to_customer(name, 'test', 'GBP', 'no', 'Use Unit Price', 'yes', '10.00', '[1-:10.00%]' )
         apl.delete_apl()
 
     def test_create_apl_for_sup(self, browser):
@@ -35,10 +35,10 @@ class TestApls:
         apl = Apls(browser, link)
         apl.list_all_apls()
 
-    def test_view_found_by_code_item(self, browser):
+    def test_view_apl_found_by_name(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         apl = Apls(browser, link)
-        apl.view_apl('lera0.107')
+        apl.view_apl('lera0.1*')

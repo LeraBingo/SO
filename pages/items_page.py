@@ -231,6 +231,8 @@ class Items(BasePage):
             code = code.text
             assert re.match(pattern, code), f'Code {code} is not equal to the searched item code {item_code}'
 
+    # !does not work with wildcards
+
     def view_item(self, item_code = '0001'):
         self.list_all_items()
         self.search_by_item_code(item_code)
