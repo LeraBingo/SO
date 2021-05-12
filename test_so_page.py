@@ -35,8 +35,7 @@ class TestSO:
         so.list_all_so()
         so.create_so('0001', 'cats')
 
-#TODO: will add several similar tests. each will test a part of apl. this one changes any up to 10. Needs assertions. Not committed
-    # creates so with new item(s) and apl. The apl has only general price discount. Asserts item values.
+    # creates so with new item(s) and an apl. The apl has only general price discount. APL method can be specified. Asserts item values before/after applying apl.
 
     def test_create_so_with_new_items_and_apl_gen_disc(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
@@ -44,11 +43,9 @@ class TestSO:
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
 
-        num_of_items = 1
+        num_of_items = 2
 
-        #for now uses existing item. uncomment the below for the test to create new item
-
-        """it = IT(browser, link)
+        it = IT(browser, link)
         it.list_all_items()
         
         item_codes = []
@@ -61,21 +58,19 @@ class TestSO:
             item_code = f'lera{str(random.random())[:5]}'
             item_codes.append(item_code)
             it.add_stock_item_with_plus(item_code, 'stock', 100, 10)
-            it.save_item()"""
+            it.save_item()
 
-        apl_name = 'lera0.8673'
-        apl_values = [apl_name, '10%', 'USD', 'no', 'Use Unit Price', 'no', '10.00', 'skip']
-        """browser.switch_to_default_content()
+        browser.switch_to_default_content()
         apl = APL(browser, link)
         apl.list_all_apls()
         apl_name = 'lera' + str(random.random())[:6]
-        apl_values =[apl_name, '10%', 'USD', 'no', 'Use Unit Price', 'no', '10.00', 'skip']
-        apl.create_new_apl_apply_to_customer(*apl_values)"""
+        apl_values =[apl_name, '10%', 'USD', 'no', 'Use Discount', 'no', '10.00', 'skip']
+        apl.create_new_apl_apply_to_customer(*apl_values)
 
         browser.switch_to_default_content()
         so = SO(browser, link)
         so.list_all_so()
-        so.create_so_with_several_items_without_saving(num_of_items, 'lera0.607' ) #*item_codes
+        so.create_so_with_several_items_without_saving(num_of_items, *item_codes)
 
         time.sleep(5)
         items_values_before_apl = so.store_items_values(num_of_items)
@@ -85,11 +80,8 @@ class TestSO:
             assert items_values_before_apl[item]['code'] == items_values_after_apl[item]['code'], f'code before = {items_values_before_apl[item]["code"]} and after = {items_values_after_apl[item]["code"] }'
             assert items_values_before_apl[item]['descr'] == items_values_after_apl[item]['descr'], f'descr before = {items_values_before_apl[item]["descr"]} and after = {items_values_after_apl[item]["descr"]}'
             assert items_values_before_apl[item]['site'] == items_values_after_apl[item]['site'], f'site before = {items_values_before_apl[item]["site"]} and after = {items_values_after_apl[item]["site"]}'
-
-            #TODO: must add checks and calculations. not committed
+            discount = float(apl_values[6]) / 100
             if apl_values[4] == 'Use Unit Price':
-
-                discount = float(apl_values[6])/100
                 up_discounted_calculated = float(items_values_before_apl[item]['up'])*(1-discount)
                 assert float(items_values_after_apl[item]['up']) == up_discounted_calculated, f'calculated up = {up_discounted_calculated}  and actual = {items_values_after_apl[item]["up"]}'
                 assert items_values_before_apl[item]['qty'] == items_values_after_apl[item]['qty'], f'qty before = {items_values_before_apl[item]["qty"]} and after = {items_values_after_apl[item]["qty"]}'
@@ -97,6 +89,12 @@ class TestSO:
                 assert items_values_before_apl[item]['total_discount'] == items_values_after_apl[item]['total_discount'], f'total_discount before = {items_values_before_apl[item]["total_discount"]} and after = {items_values_after_apl[item]["total_discount"]}'
                 total_calculated = up_discounted_calculated*float(items_values_before_apl[item]['qty'])
                 assert total_calculated  ==float( items_values_after_apl[item]['total']), f'total before = {total_calculated } and after = {float(items_values_after_apl[item]["total"])}'
+
+            elif apl_values[4] == 'Use Discount':
+                assert items_values_before_apl[item]['up'] == items_values_after_apl[item]['up'], f'before = {items_values_before_apl[item]["up"]}  and actual = {items_values_after_apl[item]["up"]}'
+                assert apl_values[6] == items_values_after_apl[item]['discount'][:-1], f'discount from apl = { apl_values[6]} and after = {items_values_after_apl[item]["discount"]}'
+                total_disc_calculated = float(items_values_before_apl[item]['up'])*discount
+                assert total_disc_calculated == float(items_values_after_apl[item]['total_discount']), f'total_discount calculated = {total_disc_calculated} and after = {items_values_after_apl[item]["total_discount"]}'
         so.save_so()
 
     def test_create_so_with_several_existing_items_by_ref(self, browser):
