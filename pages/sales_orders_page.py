@@ -56,21 +56,16 @@ class SalesOrder(BasePage):
         assert header_text.startswith('View'), "Order has not been created"
 
     # creates a so with specified number_of_items, items are added by ref# (using item search)
-    #TODO: needs assertions for applied apl (implement within apply_pl) + check item values
+    # !Without saving it
 
-    def create_so_with_several_items_and_apl(self, number_of_items, apl_name, *items):
+    def create_so_with_several_items_without_saving(self, number_of_items, *items):
 
         self.browser.find_element(*MPL.ADD_TRNX_OR_ITEM).click()
         self.browser.find_element(*MPL.SEARCH_BY_REF).send_keys('C10008')
         self.browser.find_element(*MPL.SEARCH_TRNXS).click()
         self.browser.find_element(*MPL.CREATE_NEW).click()
         self.add_several_items_by_ref(number_of_items, *items)
-        self.apply_pl(apl_name)
-        self.browser.find_element(*MPL.SAVE).click()
-        header_text = self.browser.find_element(*MPL.HEADER_TX).text
-        assert header_text.startswith('View'), "Order has not been created"
-        order_ref = self.browser.find_element(*MPL.ORDER_REF_NUMBER).get_attribute('value')
-        print('\nOrder ref - ', order_ref)
+
 
     # creates a so with specified number_of_items, items are added by ref# (using item search)
 
@@ -155,26 +150,28 @@ class SalesOrder(BasePage):
     def store_items_values(self, num_of_items):
         items_values = []
 
-        for item in range(num_of_items):
+        for item in range(1,num_of_items+1):
             item_values = {'code': '', 'descr': '', 'site': '', 'qty_invcd': '0', 'allocated': '0',
                                        'in_shipping': '0', 'shipped': '0', 'up': '0', 'qty': '0', 'discount': '0',
                                        'total_discount': '0', 'amount': '0', 'tax': '', 'tax_rate': '0', 'total': '0'}
 
-            item_values['code'] = self.browser.find_element(By.XPATH, f"//*[@id='li_table']/tbody/tr[{item + 1}]/td[4]/a").text
-            item_values['descr'] = self.browser.find_element(By.XPATH,  f"//*[@id='li_table']/tbody/tr[{item + 1}]/td[6]/p").text
-            item_values['site'] = self.browser.find_element(By.XPATH, f"//*[@id='warehouse_li.{item}']").get_attribute( 'value')
-            item_values['qty_invcd'] = self.browser.find_element(By.XPATH, f'//*[@id="shipped_li.{item}"]').get_attribute( 'value')
-            item_values['allocated'] = self.browser.find_element(By.XPATH, f'//*[@id="allocated_li.{item}"]').get_attribute( 'value')
-            item_values['in_shipping'] = self.browser.find_element(By.XPATH, f'//*[@id="inShipping_li.{item}"]').get_attribute('value')
-            item_values['shipped'] = self.browser.find_element(By.XPATH, f'//*[@id="dispatched_li.{item}"]').get_attribute( 'value')
-            item_values['up'] = self.browser.find_element(By.XPATH, f'//*[@id="unitPrice_li.{item}"]').get_attribute( 'value')
-            item_values['qty'] = self.browser.find_element(By.XPATH,  f'//*[@id="quantity_li.{item}"]').get_attribute( 'value')
-            item_values['discount'] = self.browser.find_element(By.XPATH,  f'//*[@id="discount_li.{item}"]').get_attribute( 'value')
-            item_values['total_discount'] = self.browser.find_element(By.XPATH,  f'//*[@id="totalDiscount_li.{item}"]').get_attribute( 'value')
-            item_values['amount'] = self.browser.find_element(By.XPATH,  f'//*[@id="preTaxAmount_li.{item}"]').get_attribute( 'value')
-            item_values['tax'] = self.browser.find_element(By.XPATH, f'//*[@id="taxCode_li.{item}"]').get_attribute( 'value')
-            item_values['tax_rate'] = self.browser.find_element(By.XPATH, f'//*[@id="taxRate_li.{item}"]').get_attribute('value')
-            item_values['total'] = self.browser.find_element(By.XPATH, f'//*[@id="price_li.{item}"]').get_attribute('value')
+            item_values['code'] = self.browser.find_element(By.XPATH, f"//*[@id='li_table']/tbody/tr[{item}]/td[4]").text
+            item_values['site'] = self.browser.find_element(By.XPATH, f"//table[@id='li_table']/tbody/tr[{item}]/td[12]/input").get_attribute( 'value')
+            item_values['up'] = self.browser.find_element(By.XPATH, f"//table[@id='li_table']/tbody/tr[{item}]/td[22]/input").get_attribute( 'value')
+            item_values['qty'] = self.browser.find_element(By.XPATH, f"//table[@id='li_table']/tbody/tr[{item}]/td[23]/input").get_attribute( 'value')
+            item_values['discount'] = self.browser.find_element(By.XPATH,  f"//table[@id='li_table']/tbody/tr[{item}]/td[24]/input").get_attribute( 'value')
+            item_values['total_discount'] = self.browser.find_element(By.XPATH,  f"//table[@id='li_table']/tbody/tr[{item}]/td[25]/input").get_attribute( 'value')
+            item_values['amount'] = self.browser.find_element(By.XPATH,  f"//table[@id='li_table']/tbody/tr[{item}]/td[26]/input").get_attribute( 'value')
+            item_values['total'] = self.browser.find_element(By.XPATH, f"//table[@id='li_table']/tbody/tr[{item}]/td[30]/input").get_attribute('value')
             items_values.append(item_values)
         return items_values
+
+    # saves the so
+
+    def save_so(self):
+        self.browser.find_element(*MPL.SAVE).click()
+        header_text = self.browser.find_element(*MPL.HEADER_TX).text
+        assert header_text.startswith('View'), "Order has not been created"
+        order_ref = self.browser.find_element(*MPL.ORDER_REF_NUMBER).get_attribute('value')
+        print('\nOrder ref - ', order_ref)
 
