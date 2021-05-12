@@ -135,7 +135,18 @@ class Apls(BasePage):
         msg_after_deleting_apl = self.browser.find_element(*APL.MSG_ABOUT_APL_DELETED).text
         assert msg_after_deleting_apl == 'Delete operation completed', f'Wrong text has been received - {msg_after_deleting_apl}'
 
-
+# gets apl values and return them in a list
+    def get_apl_values(self):
+        apl_name = self.browser.find_element(*APL.APL_NAME).get_attribute('value')
+        descr = self.browser.find_element(*APL.APL_DESCRIPTION).get_attribute('value')
+        currency = self.browser.find_element(*APL.APL_CURRENCY_DROPDOWN).get_attribute('value')
+        use_as_def = 'yes' if self.browser.find_element(*APL.APL_USE_AS_DEFAULT_SUP_CHECKBOX).is_selected() else 'no'
+        disc_method =  self.browser.find_element(*APL.APL_SUP_DISCOUNT_METHOD_DROPDOWN).get_attribute('value')
+        exclude_checkbox = 'yes' if self.browser.find_element(*APL.APL_EXCLUDE_CHECKBOX).is_selected() else 'no'
+        gen_disc = self.browser.find_element(*APL.APL_GENERAL_COST_DISCOUNT).get_attribute('value')
+        formula = self.browser.find_element(*APL.APL_COST_FORMULA).get_attribute('value')
+        apl_values = [apl_name, descr, currency, use_as_def, disc_method, exclude_checkbox, gen_disc, formula]
+        return apl_values
 
     def list_all_apls(self):
         frame = self.browser.find_element_by_css_selector('#tree')
