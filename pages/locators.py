@@ -20,6 +20,7 @@ class AplPageLocators:
     APL_USE_AS_DEFAULT_CUS_CHECKBOX = (By.CSS_SELECTOR, "#_isDefaultForCustomers")
     APL_USE_AS_DEFAULT_SUP_CHECKBOX = (By.CSS_SELECTOR, "#_isDefaultForSuppliers")
     CONFIRM_DELETING_BTN = (By.CSS_SELECTOR, "div.jconfirm-buttons>button:nth-child(1)")
+    NUM_OF_ROWS_IN_APL_TABLE =  (By.XPATH, "//table[@id='advancedPriceLists_table']/tbody/tr")
     LIST_ALL_APLS_TABLE = (By.CSS_SELECTOR, "#advancedPriceLists_table_header")
     MSG_ABOUT_APL_DELETED = (By.CSS_SELECTOR, "#message")
     SEARCH_BTN = (By.CSS_SELECTOR, "#quickSearch")

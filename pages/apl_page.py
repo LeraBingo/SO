@@ -181,9 +181,9 @@ class Apls(BasePage):
 
     #  Looks like it does not accept wildcards!
 
-    def view_apl(self, apl_name = 'lera0.107'):
-        self.list_all_apls()
-        self.search_by_apl_name(apl_name)
+    def view_apl(self, apl_name):
+        #self.list_all_apls()
+        #self.search_by_apl_name(apl_name)
         self.browser.find_element(*APL.VIEW_ICON).click()
         header_apl_name = self.browser.find_element(*APL.APL_HEADER_TX_APL_NAME).text
         assert header_apl_name, f'Expected APL name - {apl_name}, actual - {header_apl_name}'
