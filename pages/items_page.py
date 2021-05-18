@@ -178,8 +178,7 @@ class Items(BasePage):
         self.browser.find_element(*IPL.ITEMS_ITEM_UC).send_keys(uc)
         print('\nItem code -', item_code)
 
-    def delete_item(self, item_code):
-        self.view_item(item_code)
+    def delete_item(self):
         self.browser.find_element(*IPL.DELETE_ITEM_BTN).click()
         self.browser.find_element(*IPL.CONFIRM_DELETING_BTN).click()
         msg_after_deleting_item = self.browser.find_element(*IPL.MSG_ABOUT_ITEM_DELETED).text
@@ -231,14 +230,10 @@ class Items(BasePage):
             code = code.text
             assert re.match(pattern, code), f'Code {code} is not equal to the searched item code {item_code}'
 
-    # !does not work with wildcards
+    # !does not work with wildcards !assertion should be improved
 
-    def view_item(self, item_code = '0001'):
-        self.list_all_items()
-        self.search_by_item_code(item_code)
+    def view_item(self):
         self.browser.find_element(*IPL.VIEW_ICON).click()
-        header_item_code = self.browser.find_element(*IPL.HEADER_TX_VIEW_ITEM).text
-        assert item_code == header_item_code
 
 
 

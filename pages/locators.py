@@ -58,6 +58,7 @@ class ItemPageLocators:
     NEW_ASSEMBLY_ITEM = (By.CSS_SELECTOR, "#assemblyItem")
     NEW_KIT_ITEM = (By.CSS_SELECTOR, "#kitItem")
     NEW_STOCK_ITEM = (By.CSS_SELECTOR, "#stockItem")
+    NUM_OF_ROWS_IN_ITEM_TABLE = (By.XPATH, "//table[@id='itemList_table']/tbody/tr")
     SAVE_BTN_FOR_EDITED_ITEM = (By.CSS_SELECTOR, "#save")
     SEARCH_BY_ITEM_CODE = (By.CSS_SELECTOR, "#byItemCode")
     SEARCH_BTN = (By.CSS_SELECTOR, "#searchByItemCode")

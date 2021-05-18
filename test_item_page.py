@@ -1,7 +1,11 @@
+from selenium.common.exceptions import NoSuchElementException
 from pages.items_page import Items
 from pages.login_page import LoginPage
 import random
 import time
+from pages.locators import ItemPageLocators as IPL
+from selenium.webdriver.common.by import By
+
 
 
 
@@ -85,21 +89,57 @@ class TestItems:
         it.add_uom_to_item('lera_units', 5, 10)
         it.save_item()
 
-    def test_delete_item(self, browser):
+# deletes all the items matching itcem_code_search_pattern.
+# if an iten is used in a document, it will be skipped
+
+    def test_delete_all_items_of_certain_code(self, browser):
+        item_code_search_pattern = 'lera*'
+
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         it = Items(browser, link)
-        it.delete_item('lera0.2697202294033354')
+        it.list_all_items()
+        it.search_by_item_code(item_code_search_pattern)
+        num_of_rows = len(browser.find_elements(*IPL.NUM_OF_ROWS_IN_ITEM_TABLE))
+        swith_to_next_item = 1
+        for row in range(num_of_rows):
+            VIEW_ICON = (By.CSS_SELECTOR, f"tbody > tr:nth-child({swith_to_next_item}) > td > a.search-icon")
+            browser.find_element(*VIEW_ICON).click()
+            try:
+                it.delete_item()
+            except NoSuchElementException:
+                swith_to_next_item+=1
+            finally:
+                browser.switch_to_default_content()
+                it.list_all_items()
+                it.search_by_item_code(item_code_search_pattern)
+
+    def test_delete_item(self, browser):
+        item_code = 'lera0.5000890478592263'
+
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        it = Items(browser, link)
+        it.list_all_items()
+        it.search_by_item_code(item_code)
+        it.view_item(item_code)
+        it.delete_item()
 
     def test_edit_item(self, browser):
+        item_code = 'lera0.73'
+
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         it = Items(browser, link)
-        it.view_item('lera0.73')
+        it.list_all_items()
+        it.search_by_item_code(item_code)
+        it.view_item(item_code)
         it.edit_item()
 
     def test_go_to_item_list(self, browser):
@@ -111,18 +151,24 @@ class TestItems:
         it.list_all_items()
 
     def test_search_by_item_code(self, browser):
+        item_code = 'lera0.73'
+
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         it = Items(browser, link)
         it.list_all_items()
-        it.search_by_item_code('lera0.7*')
+        it.search_by_item_code(item_code)
 
     def test_view_found_by_code_item(self, browser):
+        item_code = 'lera0.73'
+
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
         page.login('SOA424824', 'letmein', 'letmein')
         it = Items(browser, link)
-        it.view_item()
+        it.list_all_items()
+        it.search_by_item_code(item_code)
+        it.view_item(item_code)
