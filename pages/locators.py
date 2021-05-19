@@ -29,7 +29,14 @@ class AplPageLocators:
     VIEW_ICON = (By.CSS_SELECTOR, "tbody > tr:nth-child(1) > td > a.search-icon")
 
 class CustomerPageLocators:
-    pass
+    CUS_CREATE_NEW = (By.CSS_SELECTOR, "#_header_text~ul>li:first-child>button")
+    CUS_CURRENCY = (By.CSS_SELECTOR, "#currency")
+    CUS_HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
+    CUS_NAME = (By.CSS_SELECTOR, "#partnerName")
+    CUS_PL = (By.CSS_SELECTOR, "#priceList")
+    CUS_PROFILE_TAB = (By.CSS_SELECTOR, "//nav[@class = 'custom-tabs group']/ul/li/a[contains(text(),'Profile')]")
+    CUS_SAVE_BTN = (By.CSS_SELECTOR, "#construct")
+    CUS_STATE = (By.CSS_SELECTOR, "#stateProvince")
 
 
 
