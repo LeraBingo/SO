@@ -126,7 +126,7 @@ class TestItems:
         it = Items(browser, link)
         it.list_all_items()
         it.search_by_item_code(item_code)
-        it.view_item(item_code)
+        it.view_item()
         it.delete_item()
 
     def test_edit_item(self, browser):
@@ -139,7 +139,7 @@ class TestItems:
         it = Items(browser, link)
         it.list_all_items()
         it.search_by_item_code(item_code)
-        it.view_item(item_code)
+        it.view_item()
         it.edit_item()
 
     def test_go_to_item_list(self, browser):
@@ -171,4 +171,4 @@ class TestItems:
         it = Items(browser, link)
         it.list_all_items()
         it.search_by_item_code(item_code)
-        it.view_item(item_code)
+        it.view_item()

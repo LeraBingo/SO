@@ -28,6 +28,9 @@ class AplPageLocators:
     TABLE_APLS = (By.CSS_SELECTOR, "#advancedPriceLists_table tbody td:nth-child(3)")
     VIEW_ICON = (By.CSS_SELECTOR, "tbody > tr:nth-child(1) > td > a.search-icon")
 
+class CustomerPageLocators:
+    pass
+
 
 
 class ItemPageLocators:
@@ -89,6 +92,7 @@ class MainPageLocators:
 
     COLLAPSE_BTN = (By.CSS_SELECTOR, "#tabPanel > nav > div.tree-controls.group > a.collapse.group")
     CREATE_NEW = (By.XPATH, "(//a[contains(text(),'Create New')])")
+    CUSTOMERS =  (By.XPATH, "//li/a/span[starts-with(text(), 'Customers')]")
 
     EDIT_TRNX = (By.XPATH, "//a/img[contains(@alt, 'edit')]")
     EXPLORITARY_MENU = (By.CSS_SELECTOR, "#tree")

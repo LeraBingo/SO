@@ -230,7 +230,7 @@ class Items(BasePage):
             code = code.text
             assert re.match(pattern, code), f'Code {code} is not equal to the searched item code {item_code}'
 
-    # !does not work with wildcards !assertion should be improved
+    # views the 1st item in the table
 
     def view_item(self):
         self.browser.find_element(*IPL.VIEW_ICON).click()
