@@ -29,14 +29,18 @@ class AplPageLocators:
     VIEW_ICON = (By.CSS_SELECTOR, "tbody > tr:nth-child(1) > td > a.search-icon")
 
 class CustomerPageLocators:
+    CUS_ADVANCED_SEARCH_TAB = (By.CSS_SELECTOR, "#tab2 > a")
     CUS_CREATE_NEW = (By.CSS_SELECTOR, "#_header_text~ul>li:first-child>button")
     CUS_CURRENCY = (By.CSS_SELECTOR, "#currency")
     CUS_HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
     CUS_NAME = (By.CSS_SELECTOR, "#partnerName")
+    CUS_NAME_IN_SEARCH = (By.CSS_SELECTOR, "#sName")
+    CUS_NAMES_FROM_TBL = (By.XPATH, "//table[@id='customers_table']/tbody/tr/td[4]")
     CUS_PL = (By.CSS_SELECTOR, "#priceList")
     CUS_PROFILE_TAB = (By.CSS_SELECTOR, "//nav[@class = 'custom-tabs group']/ul/li/a[contains(text(),'Profile')]")
     CUS_SAVE_BTN = (By.CSS_SELECTOR, "#construct")
-    CUS_STATE = (By.CSS_SELECTOR, "#stateProvince")
+    CUS_SEARCH = (By.CSS_SELECTOR, "#_search")
+    CUS_VIEW_ICON = (By.XPATH, '//*[@id="customers_table"]/tbody/tr[1]/td[2]/a[3]')
 
 
 

@@ -31,3 +31,17 @@ class Customers(BasePage):
         header_text = self.browser.find_element(*CPL.CUS_HEADER_TX).text
         assert header_text.startswith('View'), f'View Customer'
 
+    def search_cus_by_ref(self, name):
+        self.browser.find_element(*CPL.CUS_ADVANCED_SEARCH_TAB).click()
+        self.browser.find_element(*CPL.CUS_NAME_IN_SEARCH).send_keys(name)
+        self.browser.find_element(*CPL.CUS_SEARCH).click()
+        names = self.browser.find_elements(*CPL.CUS_NAMES_FROM_TBL)
+        for n in names:
+            n = n.text
+            assert n.startswith(name), f'Expected name = {name}, actual name = {n}'
+
+    def view_cus(self):
+        self.browser.find_element(*CPL.CUS_VIEW_ICON).click()
+        header_text = self.browser.find_element(*CPL.CUS_HEADER_TX).text
+        assert header_text.startswith('View'), f'View Customer'
+
