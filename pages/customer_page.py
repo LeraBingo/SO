@@ -6,11 +6,19 @@ from selenium.webdriver.support.ui import Select
 
 class Customers(BasePage):
 
+    def add_cus_pl(self, pl):
+        Select(self.browser.find_element(*CPL.CUS_PL)).select_by_visible_text(pl)
+        return pl
+
     # creating a customer. !without saving
     def create_cus(self, name, currency):
         self.browser.find_element(*CPL.CUS_CREATE_NEW).click()
         self.browser.find_element(*CPL.CUS_NAME).send_keys(name)
         Select(self.browser.find_element(*CPL.CUS_CURRENCY)).select_by_visible_text(currency)
+
+    def create_so_from_cus(self):
+        self.browser.find_element(*CPL.CUS_ACTIONS).click()
+        self.browser.find_element(*CPL.CUS_NEW_SO_OPTION).click()
 
 
 

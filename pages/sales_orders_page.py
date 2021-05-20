@@ -22,7 +22,7 @@ class SalesOrder(BasePage):
         self.browser.find_element(*MPL.FIND_ITEM).click()
         for i in range(number_of_items):
             self.browser.find_element(*MPL.SEARCH_ITEM_IN_ITEM_SELECTOR).send_keys(items[i])
-            time.sleep(3)  # for the table to be refreshed
+            time.sleep(5)  # for the table to be refreshed
             self.browser.find_element(*MPL.ADD_ITEM_IN_ITEM_SELECTOR).click()
             self.browser.find_element(*MPL.SEARCH_ITEM_IN_ITEM_SELECTOR).clear()
         self.browser.find_element(*MPL.APPLY_IN_ITEM_SEARCH).click()
