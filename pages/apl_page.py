@@ -179,11 +179,9 @@ class Apls(BasePage):
             name = name.text
             assert re.match(pattern, name), f'Name {name} is not equal to the searched name {apl_name}'
 
-    #  Looks like it does not accept wildcards!
+    #  Looks like it does not accept wildcards! assertion is incorrect
 
     def view_apl(self, apl_name):
-        #self.list_all_apls()
-        #self.search_by_apl_name(apl_name)
         self.browser.find_element(*APL.VIEW_ICON).click()
         header_apl_name = self.browser.find_element(*APL.APL_HEADER_TX_APL_NAME).text
         assert header_apl_name, f'Expected APL name - {apl_name}, actual - {header_apl_name}'

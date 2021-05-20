@@ -31,8 +31,10 @@ class AplPageLocators:
 class CustomerPageLocators:
     CUS_ACTIONS = (By.XPATH, "//a[text()[contains(.,'Actions')]]")
     CUS_ADVANCED_SEARCH_TAB = (By.CSS_SELECTOR, "#tab2 > a")
+    CUS_CHECKBOX_IN_TABLE = (By.XPATH, '//*[@id="ms_customers.0"]')
     CUS_CREATE_NEW = (By.CSS_SELECTOR, "#_header_text~ul>li:first-child>button")
     CUS_CURRENCY = (By.CSS_SELECTOR, "#currency")
+    CUS_DELETE_CUSTOMERS = (By.XPATH, "//a[text()[contains(.,'Delete Customers')]]")
     CUS_EDIT = (By.XPATH, "//a[text()[contains(.,'Edit')]]")
     CUS_HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
     CUS_NAME = (By.CSS_SELECTOR, "#partnerName")
@@ -106,6 +108,7 @@ class MainPageLocators:
     APPLY_IN_ITEM_SEARCH = (By.XPATH, "//*[@id='apply']")
 
     COLLAPSE_BTN = (By.CSS_SELECTOR, "#tabPanel > nav > div.tree-controls.group > a.collapse.group")
+    CONFIRM_DELETING_BTN = (By.CSS_SELECTOR, "div.jconfirm-buttons>button:nth-child(1)")
     CREATE_NEW = (By.XPATH, "(//a[contains(text(),'Create New')])")
     CUSTOMERS =  (By.XPATH, "//li/a/span[starts-with(text(), 'Customers')]")
 
@@ -126,6 +129,7 @@ class MainPageLocators:
     MAGNIFYING_GLASS_VIEW_SO = (
         By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
 
+    MSG_ABOUT_SUCCESSFUL_DELETION = (By.CSS_SELECTOR, "#message")
     ORDER_REF_NUMBER = (By.CSS_SELECTOR, '#objectUID')
 
     PLEVEL_VALUE = (By.XPATH, '//*[@id="priceLevel"]/p')
