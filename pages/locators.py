@@ -34,6 +34,7 @@ class CustomerPageLocators:
     CUS_CHECKBOX_IN_TABLE = (By.XPATH, '//*[@id="ms_customers.0"]')
     CUS_CREATE_NEW = (By.CSS_SELECTOR, "#_header_text~ul>li:first-child>button")
     CUS_CURRENCY = (By.CSS_SELECTOR, "#currency")
+    CUS_DELETE = (By.XPATH, "//a[text()[contains(.,'Delete')]]")
     CUS_DELETE_CUSTOMERS = (By.XPATH, "//a[text()[contains(.,'Delete Customers')]]")
     CUS_EDIT = (By.XPATH, "//a[text()[contains(.,'Edit')]]")
     CUS_HEADER_TX = (By.CSS_SELECTOR, "#_header_text")

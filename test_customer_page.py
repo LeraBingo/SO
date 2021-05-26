@@ -64,6 +64,20 @@ class TestCustomers:
         actual_pl = browser.find_element(*MPL.PL_VALUE).text
         assert pl_name == actual_pl, f'expected pl - {pl_name}, actual pl - {actual_pl}'
 
+    def test_create_and_delete_cus(self, browser):
+        cus_name = 'testC'
+        cus_currency = 'USD'
+
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        cus = CU(browser, link)
+        cus.list_all_customers()
+        cus.create_cus(cus_name, cus_currency)
+        cus.save_new_cus()
+        cus.delete_cus()
+
 
     def test_create_and_delete_cus_from_grid(self, browser):
         cus_name = 'testC'

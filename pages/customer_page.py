@@ -22,6 +22,13 @@ class Customers(BasePage):
         self.browser.find_element(*CPL.CUS_ACTIONS).click()
         self.browser.find_element(*CPL.CUS_NEW_SO_OPTION).click()
 
+    def delete_cus(self):
+        self.browser.find_element(*CPL.CUS_ACTIONS).click()
+        self.browser.find_element(*CPL.CUS_DELETE).click()
+        self.browser.find_element(*MPL.CONFIRM_DELETING_BTN).click()
+        message_about_deletion = self.browser.find_element(*MPL.MSG_ABOUT_SUCCESSFUL_DELETION).text
+        assert message_about_deletion == 'Delete operation completed', f'Actual msg = {message_about_deletion}'
+
     def delete_cus_from_grid(self):
         self.browser.find_element(*CPL.CUS_CHECKBOX_IN_TABLE).click()
         self.browser.find_element(*CPL.CUS_DELETE_CUSTOMERS).click()
