@@ -17,6 +17,30 @@ class Customers(BasePage):
         self.browser.find_element(*CPL.CUS_NAME).send_keys(name)
         Select(self.browser.find_element(*CPL.CUS_CURRENCY)).select_by_visible_text(currency)
 
+    # creates a memo and checks whether it`s been created
+    def create_memo_for_cus(self, subject):
+        self.browser.find_element(*CPL.CUS_MEMO_ICON).click()
+        frame = self.browser.find_element_by_css_selector('#popupFrame')
+        self.browser.switch_to.frame(frame)
+        frame = self.browser.find_element_by_css_selector('#workarea')
+        self.browser.switch_to.frame(frame)
+        self.browser.find_element(*MPL.MEMO_SUBJECT).send_keys(subject)
+        self.browser.find_element(*MPL.MEMO_DETAIL_TAB).click()
+        self.browser.find_element(*MPL.MEMO_EMAIL_REMAINDER_CHECKBOX).click()
+        self.browser.find_element(*MPL.SAVE).click()
+        self.browser.switch_to_default_content()
+        frame = self.browser.find_element_by_css_selector('#workarea')
+        self.browser.switch_to.frame(frame)
+
+        # below assertion goes
+        self.browser.find_element(*CPL.CUS_LIST_MEMOS).click()
+        frame = self.browser.find_element_by_css_selector('#popupFrame')
+        self.browser.switch_to.frame(frame)
+        memo_names = []
+        for memo_name in self.browser.find_elements(*MPL.MEMO_TBL_SUBJECT_COLUMN):
+            memo_names += [memo_name.text]
+        assert subject in memo_names, f'Memo has not been created'
+
     # Actions -> Create New SO
     def create_so_from_cus(self):
         self.browser.find_element(*CPL.CUS_ACTIONS).click()

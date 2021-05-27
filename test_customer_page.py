@@ -117,3 +117,16 @@ class TestCustomers:
         cus.search_cus_by_ref(cus_name)
         cus.view_cus()
 
+    def test_search_view_cus_add_memo(self, browser):
+        cus_name = '3M COMPANY'
+        subject = 'new2_subj'
+
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        cus = CU(browser, link)
+        cus.list_all_customers()
+        cus.search_cus_by_ref(cus_name)
+        cus.view_cus()
+        cus.create_memo_for_cus(subject)

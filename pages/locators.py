@@ -38,6 +38,8 @@ class CustomerPageLocators:
     CUS_DELETE_CUSTOMERS = (By.XPATH, "//a[text()[contains(.,'Delete Customers')]]")
     CUS_EDIT = (By.XPATH, "//a[text()[contains(.,'Edit')]]")
     CUS_HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
+    CUS_LIST_MEMOS = (By.CSS_SELECTOR, "h1#_header_text~ul li:nth-child(3) button")
+    CUS_MEMO_ICON = (By.CSS_SELECTOR, "h1#_header_text~ul li:nth-child(4) button")
     CUS_NAME = (By.CSS_SELECTOR, "#partnerName")
     CUS_NAME_IN_SEARCH = (By.CSS_SELECTOR, "#sName")
     CUS_NAMES_FROM_TBL = (By.XPATH, "//table[@id='customers_table']/tbody/tr/td[4]")
@@ -129,7 +131,10 @@ class MainPageLocators:
 
     MAGNIFYING_GLASS_VIEW_SO = (
         By.CSS_SELECTOR, "#invoices_table > tbody > tr > td.idb-table-3-actions-td.nw > a.search-icon")
-
+    MEMO_DETAIL_TAB = (By.CSS_SELECTOR, "#tab2 > a")
+    MEMO_EMAIL_REMAINDER_CHECKBOX = (By.CSS_SELECTOR, "#_emailReminderYN")
+    MEMO_SUBJECT = (By.CSS_SELECTOR, "#subject")
+    MEMO_TBL_SUBJECT_COLUMN = (By.XPATH, '//*[@id="memos_table"]/tbody/tr/td[2]')
     MSG_ABOUT_SUCCESSFUL_DELETION = (By.CSS_SELECTOR, "#message")
     ORDER_REF_NUMBER = (By.CSS_SELECTOR, '#objectUID')
 
