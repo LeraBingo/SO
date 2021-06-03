@@ -31,12 +31,15 @@ class AplPageLocators:
 class CustomerPageLocators:
     CUS_ACTIONS = (By.XPATH, "//a[text()[contains(.,'Actions')]]")
     CUS_ADVANCED_SEARCH_TAB = (By.CSS_SELECTOR, "#tab2 > a")
+    CUS_BALANCE_FROM_TBL = (By.XPATH, "//table[@id='customers_table']/tbody/tr/td[6]")
     CUS_CHECKBOX_IN_TABLE = (By.XPATH, '//*[@id="ms_customers.0"]')
     CUS_CREATE_NEW = (By.CSS_SELECTOR, "#_header_text~ul>li:first-child>button")
     CUS_CURRENCY = (By.CSS_SELECTOR, "#currency")
     CUS_DELETE = (By.XPATH, "//a[text()[contains(.,'Delete')]]")
     CUS_DELETE_CUSTOMERS = (By.XPATH, "//a[text()[contains(.,'Delete Customers')]]")
     CUS_EDIT = (By.XPATH, "//a[text()[contains(.,'Edit')]]")
+    CUS_EXPORT_ALERT = (By.XPATH, "//div[@class='jconfirm-buttons']/button")
+    CUS_EXPORT_CHECKBOX = (By.CSS_SELECTOR, "#_export")
     CUS_HEADER_TX = (By.CSS_SELECTOR, "#_header_text")
     CUS_LIST_MEMOS = (By.CSS_SELECTOR, "h1#_header_text~ul li:nth-child(3) button")
     CUS_MEMO_ICON = (By.CSS_SELECTOR, "h1#_header_text~ul li:nth-child(4) button")
@@ -46,6 +49,7 @@ class CustomerPageLocators:
     CUS_NEW_SO_OPTION = (By.XPATH, "//a[text()[contains(.,'New Sales Order')]]")
     CUS_PL = (By.CSS_SELECTOR, "#priceList")
     CUS_PROFILE_TAB = (By.XPATH, "//a[contains(text(),'Profile')]")
+    CUS_REFS_FROM_TBL = (By.XPATH, "//table[@id='customers_table']/tbody/tr/td[5]")
     CUS_SAVE_BTN = (By.CSS_SELECTOR, "#save")
     CUS_SAVE_NEW_CUS_BTN = (By.CSS_SELECTOR, "#construct")
     CUS_SEARCH = (By.CSS_SELECTOR, "#_search")
@@ -109,7 +113,7 @@ class MainPageLocators:
     APL_DROPDOWN = (By.CSS_SELECTOR, "#priceList")
     APLS = (By.XPATH, "//li/a/span[contains(text(), 'Advanced Price Lists')]")
     APPLY_IN_ITEM_SEARCH = (By.XPATH, "//*[@id='apply']")
-
+    BACK_BTN = (By.XPATH, "//div[@class='title-bar group']/ul/li/button/img")
     COLLAPSE_BTN = (By.CSS_SELECTOR, "#tabPanel > nav > div.tree-controls.group > a.collapse.group")
     CONFIRM_DELETING_BTN = (By.CSS_SELECTOR, "div.jconfirm-buttons>button:nth-child(1)")
     CREATE_NEW = (By.XPATH, "(//a[contains(text(),'Create New')])")
@@ -117,6 +121,7 @@ class MainPageLocators:
 
     EDIT_TRNX = (By.XPATH, "//a/img[contains(@alt, 'edit')]")
     EXPLORITARY_MENU = (By.CSS_SELECTOR, "#tree")
+    EXPORT_HERE_LINK = (By.CSS_SELECTOR, "#message > a")
 
     FIND_ITEM = (By.CSS_SELECTOR, "#ptr_itemPtr_li\.0 > a.dbc-find-ITEMS.list.find-btn")
 
@@ -136,6 +141,7 @@ class MainPageLocators:
     MEMO_SUBJECT = (By.CSS_SELECTOR, "#subject")
     MEMO_TBL_SUBJECT_COLUMN = (By.XPATH, '//*[@id="memos_table"]/tbody/tr/td[2]')
     MSG_ABOUT_SUCCESSFUL_DELETION = (By.CSS_SELECTOR, "#message")
+    NEXT_BTN = (By.XPATH, '//a[contains(text(),"Next")]')
     ORDER_REF_NUMBER = (By.CSS_SELECTOR, '#objectUID')
 
     PLEVEL_VALUE = (By.XPATH, '//*[@id="priceLevel"]/p')

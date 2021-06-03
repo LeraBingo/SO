@@ -1,8 +1,12 @@
+from pandas.tests.io.excel.test_openpyxl import openpyxl
+
 from .base_page import BasePage
 from .locators import CustomerPageLocators as CPL
 from .locators import MainPageLocators as MPL
 import time
 from selenium.webdriver.support.ui import Select
+import pandas as pd
+import numpy
 
 class Customers(BasePage):
 
@@ -65,6 +69,72 @@ class Customers(BasePage):
         self.browser.find_element(*CPL.CUS_EDIT).click()
         header_text = self.browser.find_element(*CPL.CUS_HEADER_TX).text
         assert header_text.startswith('Edit'), f'The item has not been edited'
+
+    # exports customer tbl, saves the excel data to the list, returns it
+    def export_cus_tbl(self):
+
+        # method to get the downloaded file name
+        def getDownLoadedFileName(waitTime):
+            self.browser.execute_script("window.open()")
+            # switch to new tab
+            self.browser.switch_to.window(self.browser.window_handles[-1])
+            # navigate to chrome downloads
+            self.browser.get('chrome://downloads')
+            # define the endTime
+            endTime = time.time() + waitTime
+            while True:
+                try:
+                    # get downloaded percentage
+                    downloadPercentage = self.browser.execute_script(
+                        "return document.querySelector('downloads-manager').shadowRoot.querySelector('#downloadsList downloads-item').shadowRoot.querySelector('#progress').value")
+                    # check if downloadPercentage is 100 (otherwise the script will keep waiting)
+                    if downloadPercentage == 100:
+                        # return the file name once the download is completed
+                        return self.browser.execute_script(
+                            "return document.querySelector('downloads-manager').shadowRoot.querySelector('#downloadsList downloads-item').shadowRoot.querySelector('div#content  #file-link').text")
+                except:
+                    pass
+                time.sleep(1)
+                if time.time() > endTime:
+                    break
+
+        self.browser.find_element(*CPL.CUS_EXPORT_CHECKBOX).click()
+        self.browser.find_element(*CPL.CUS_EXPORT_ALERT).click()
+        self.browser.find_element(*MPL.LIST_ALL).click()
+        self.browser.find_element(*MPL.EXPORT_HERE_LINK).click()
+        file_name = getDownLoadedFileName(waitTime=5)
+        #path = r"C:\Users\User\Downloads\export (69).xlsx"
+        path = f'C:\\Users\\User\\Downloads\\{file_name}'
+        exl = pd.read_excel(path, engine='openpyxl')
+        values_for_cus = exl.values.tolist()
+        return values_for_cus
+
+    # takes cus name, ref# balance and returns them in a list. Balance is formatted to float
+    def get_cus_values_from_tbl(self):
+        data_from_tbl = [[],[],[]]
+
+        def add_datum_to_lists(data_from_tbl):
+            names, refs, balances = [], [], []
+            names += self.browser.find_elements(*CPL.CUS_NAMES_FROM_TBL)
+            for name in names:
+                data_from_tbl[0]+=[name.text]
+            refs += self.browser.find_elements(*CPL.CUS_REFS_FROM_TBL)
+            for ref in refs:
+                data_from_tbl[1]+=[ref.text]
+            balances += self.browser.find_elements(*CPL.CUS_BALANCE_FROM_TBL)
+            for balance in balances:
+                balance = balance.text
+                data_from_tbl[2]+=[balance]
+            if self.is_element_present(*MPL.NEXT_BTN):
+                self.browser.find_element(*MPL.NEXT_BTN).click()
+                add_datum_to_lists(data_from_tbl)
+
+        add_datum_to_lists(data_from_tbl)
+        data_from_tbl = numpy.transpose(data_from_tbl).tolist()
+        for line in data_from_tbl:
+            line[2] = float(line[2].replace(',','')) # format from str to float
+        return data_from_tbl
+
 
     def list_all_customers(self):
         frame = self.browser.find_element_by_css_selector('#tree')

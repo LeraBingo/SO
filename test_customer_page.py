@@ -96,6 +96,25 @@ class TestCustomers:
         cus.search_cus_by_ref(cus_name)
         cus.delete_cus_from_grid()
 
+# takes cus data from excel and from the table and compares it.
+# !now it fails as there is difference in number of spaces of customers
+    def test_export_cus_tbl(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424824', 'letmein', 'letmein')
+        cus = CU(browser, link)
+        cus.list_all_customers()
+        data_from_excel = cus.export_cus_tbl()
+        browser.switch_to.window(browser.window_handles[0]) # to switch back to the window with customers
+        frame = browser.find_element_by_css_selector('#workarea')
+        browser.switch_to.frame(frame)
+        browser.find_element(*MPL.BACK_BTN).click()
+        time.sleep(2)
+        browser.find_element(*MPL.LIST_ALL).click()
+        time.sleep(2)
+        data_from_tbl = cus.get_cus_values_from_tbl()
+        assert data_from_excel == data_from_tbl, f'data from excel = {data_from_excel}, data from tbl = {data_from_tbl}'
 
     def test_go_to_customers_list(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
