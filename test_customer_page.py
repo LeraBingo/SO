@@ -96,6 +96,7 @@ class TestCustomers:
         cus.search_cus_by_ref(cus_name)
         cus.delete_cus_from_grid()
 
+
 # takes cus data from excel and from the table and compares it.
 # !now it fails as there is difference in number of spaces of customers
     def test_export_cus_tbl(self, browser):

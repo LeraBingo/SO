@@ -70,6 +70,7 @@ class ItemPageLocators:
     ITEM_CATEGORY_2 = (By.CSS_SELECTOR, "#cat2")
     ITEM_CLASS = (By.CSS_SELECTOR, "#type1")
     ITEMS_CLASSIFICATION_TAB = (By.CSS_SELECTOR, "#tab4 > a")
+    ITEM_CODES_IN_THE_TBL = (By.XPATH, '//*[@id="itemList_table"]/tbody/tr/td[3]')
     ITEMS_ITEM_CODE = (By.CSS_SELECTOR, "#itemCode")
     ITEMS_ITEM_DESCRIPTION = (By.CSS_SELECTOR, "#description")
     ITEMS_ITEM_UC = (By.CSS_SELECTOR, "#costPrice")

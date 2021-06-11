@@ -153,7 +153,7 @@ class TestSO:
         page.login('SOA424824', 'letmein', 'letmein')
         so = SO(browser, link)
         so.list_all_so()
-        so.create_so_with_several_items_found_by_ref(3, '0001', '0002', '0003')
+        so.create_so_with_several_items_found_by_ref(5, '0001', '00011', '0001101', '00000048', '00012')
 
     def test_create_so_with_several_new_items_by_ref(self, browser):
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'

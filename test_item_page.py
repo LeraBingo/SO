@@ -4,6 +4,7 @@ from pages.login_page import LoginPage
 import random
 import time
 from pages.locators import ItemPageLocators as IPL
+from pages.locators import MainPageLocators as MPL
 from selenium.webdriver.common.by import By
 
 
@@ -129,6 +130,7 @@ class TestItems:
         it.view_item()
         it.delete_item()
 
+
     def test_edit_item(self, browser):
         item_code = 'lera0.73'
 
@@ -146,7 +148,7 @@ class TestItems:
         link = 'http://18.213.119.207/salesorder/pages/login.aspx'
         page = LoginPage(browser, link)
         page.open()
-        page.login('SOA424824', 'letmein', 'letmein')
+        page.login('SOA424806', 'letmein', 'letmein')
         it = Items(browser, link)
         it.list_all_items()
 
@@ -160,6 +162,17 @@ class TestItems:
         it = Items(browser, link)
         it.list_all_items()
         it.search_by_item_code(item_code)
+
+
+    def test_search_duplicate_items_with_space_at_the_end(self, browser):
+        link = 'http://18.213.119.207/salesorder/pages/login.aspx'
+        page = LoginPage(browser, link)
+        page.open()
+        page.login('SOA424806', 'letmein', 'letmein')
+        it = Items(browser, link)
+        it.list_all_items()
+        it.check_space_at_the_end_of_item_code()
+
 
     def test_view_found_by_code_item(self, browser):
         item_code = 'lera0.73'

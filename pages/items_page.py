@@ -116,6 +116,29 @@ class Items(BasePage):
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(Keys.DELETE)
         self.browser.find_element(*IPL.UOM_PURCHASE_UNITS).send_keys(purchase_ration)
 
+# stores all item codes in the list. go through the list and looks for duplicates (same item code + space(s) at the end)
+# this is for 6590
+    def check_space_at_the_end_of_item_code(self):
+        search_patterns = []
+        duplicate_codes = []
+
+        def store_all_item_codes(search_patterns):
+            item_codes = self.browser.find_elements(*IPL.ITEM_CODES_IN_THE_TBL)
+            for item_code in item_codes:
+                search_patterns += [item_code.text]
+            if self.is_element_present(*MPL.NEXT_BTN):
+                self.browser.find_element(*MPL.NEXT_BTN).click()
+                store_all_item_codes(search_patterns)
+
+        store_all_item_codes(search_patterns)
+        for code_to_pattern in search_patterns:
+            for code in search_patterns:
+                pattern = rf"{re.escape(code_to_pattern)}\s+"
+                if re.fullmatch(pattern, code):
+                    duplicate_codes+=[code]
+        assert len(duplicate_codes) == 0, f'Duplicated items - {duplicate_codes}'
+
+
     def create_specified_number_of_items(self, num_of_items, item_type):
         for item in range(num_of_items):
             self.browser.switch_to_default_content()
@@ -229,6 +252,9 @@ class Items(BasePage):
         for code in codes:
             code = code.text
             assert re.match(pattern, code), f'Code {code} is not equal to the searched item code {item_code}'
+
+
+
 
     # views the 1st item in the table
 
